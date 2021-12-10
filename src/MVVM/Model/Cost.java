@@ -9,11 +9,11 @@ public class Cost {
     private String usernames;
     private String 	categories;
     private String description;
-    private String costAmount;
+    private double costAmount;
     private String currency;
     private Date date;
 
-    public Cost(String usernames, String categories, String description, String costAmount, String currency, Date date) {
+    public Cost(String usernames, String categories, String description, double costAmount, String currency, Date date) {
         this.usernames = usernames;
         this.categories = categories;
         this.description = description;
@@ -47,11 +47,11 @@ public class Cost {
         this.description = description;
     }
 
-    public String getCostAmount() {
+    public double getCostAmount() {
         return costAmount;
     }
 
-    public void setCostAmount(String costAmount) {
+    public void setCostAmount(double costAmount) {
         this.costAmount = costAmount;
     }
 
