@@ -14,18 +14,18 @@ public class CostManagerDBModel implements IModel{
     }
 
     @Override
-    public void setupNewAccount(String username, String password, String firstName, String lastName, String email) {
+    public void setupNewAccount(Account account) {
 
     }
 
     @Override
-    public void loginToAccount(String username, String password) {
+    public void loginToAccount(Account account) {
 
     }
 
     @Override
-    public void addCategory(String category) {
-        categories.add(category);
+    public void addCategory(Category category) {
+
     }
 
     @Override
@@ -45,11 +45,6 @@ public class CostManagerDBModel implements IModel{
 
     @Override
     public void logout() {
-
-    }
-
-    @Override
-    public void addDescription(String description) {
 
     }
 }
