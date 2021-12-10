@@ -7,15 +7,14 @@ public class Account {
     private String firstName;
     private String lastName;
     private String email;
-    private boolean isRegistered;
 
-    public Account(String username, String password, String firstName, String lastName, String email, boolean isRegistered) {
+
+    public Account(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.isRegistered = isRegistered;
     }
 
     public String getUsername() {
@@ -58,11 +57,7 @@ public class Account {
         this.email = email;
     }
 
-    public boolean isRegistered() {
-        return isRegistered;
-    }
 
-    public void setRegistered(boolean registered) {
-        isRegistered = registered;
-    }
+
+
 }

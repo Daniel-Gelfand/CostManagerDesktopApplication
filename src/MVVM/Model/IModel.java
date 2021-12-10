@@ -12,4 +12,7 @@ public interface IModel {
     public void addNewCost(Cost cost);
     public Connection getReport();
     public void logout();
+
+
+
 }
