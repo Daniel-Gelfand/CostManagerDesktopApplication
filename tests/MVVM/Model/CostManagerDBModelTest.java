@@ -28,7 +28,6 @@ class CostManagerDBModelTest {
         costManagerDBModel = null;
         cost = null;
         category = null;
-
     }
 
     @org.junit.jupiter.api.Test
