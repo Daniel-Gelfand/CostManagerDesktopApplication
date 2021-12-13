@@ -4,6 +4,12 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+
+/**
+ * TEXT HERE...
+ */
+
+
 public class CostManagerDBModel implements IModel {
 
     private List<Category> categories = new LinkedList<>();

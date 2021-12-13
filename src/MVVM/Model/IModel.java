@@ -3,6 +3,11 @@ package MVVM.Model;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * TEXT HERE...
+ */
+
+
 public interface IModel {
     public void setupNewAccount(Account account) throws CostManagerExceptions;
     public boolean loginToAccount(Account account) throws CostManagerExceptions;

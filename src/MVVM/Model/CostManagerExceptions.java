@@ -2,6 +2,11 @@ package MVVM.Model;
 
 import java.sql.SQLException;
 
+/**
+ * TEXT HERE...
+ */
+
+
 public class CostManagerExceptions extends SQLException {
 
     public CostManagerExceptions(String message)

@@ -1,5 +1,11 @@
 package MVVM.Model;
 
+
+/**
+ * TEXT HERE...
+ */
+
+
 public class Account {
 
     private String username;

@@ -1,5 +1,11 @@
 package MVVM.Model;
 
+
+/**
+ * TEXT HERE...
+ */
+
+
 public interface IView {
 
     public void init(); // Set all jframes.
