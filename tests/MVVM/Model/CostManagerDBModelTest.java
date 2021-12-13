@@ -15,10 +15,10 @@ class CostManagerDBModelTest {
     private List<Category> categories = new LinkedList<>();
 
     @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-        account = new Account("juniTESTv2","123456","Junit","test","junit@test.com");
+    void setUp() throws CostManagerExceptions {
+        account = new Account("juniTESTv3AfterCMExceptions","123456","Junit","test","junitCMExceptions@test.com");
         costManagerDBModel = new CostManagerDBModel();
-        cost = new Cost("juniTESTv2","TEST","TEST TEST TEST?",999.99,"TEST",date);
+        cost = new Cost("juniTESTv3AfterCMExceptions","TEST","juniTESTv2AfterCMExceptions",999.99,"TEST",date);
         category = new Category("TEST");
     }
 
@@ -31,12 +31,12 @@ class CostManagerDBModelTest {
     }
 
     @org.junit.jupiter.api.Test
-    void setupNewAccount() {
+    void setupNewAccount() throws CostManagerExceptions {
         costManagerDBModel.setupNewAccount(account);
     }
 
     @org.junit.jupiter.api.Test
-    void loginToAccount() {
+    void loginToAccount() throws CostManagerExceptions {
         costManagerDBModel.loginToAccount(account);
     }
 
@@ -46,7 +46,7 @@ class CostManagerDBModelTest {
     }
 
     @org.junit.jupiter.api.Test
-    void addNewCost() {
+    void addNewCost() throws CostManagerExceptions {
         costManagerDBModel.addNewCost(cost);
     }
 }

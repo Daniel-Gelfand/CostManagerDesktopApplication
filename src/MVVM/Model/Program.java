@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CostManagerExceptions {
 
 
         Date date = new Date(121,11,10);
@@ -17,14 +17,14 @@ public class Program {
 
         CostManagerDBModel costManagerDBModel = new CostManagerDBModel();
 
-        //Account account = new Account("Danoy","123456","Daniel","Gel",
-          //      "danoyoy@gmail.com");
+        Account account = new Account("Danoy","123456","Daniel","Gel",
+                "danoyoy@gmail.com");
 
-        //costManagerDBModel.setupNewAccount(account);
+        costManagerDBModel.setupNewAccount(account);
         //System.out.println(costManagerDBModel.loginToAccount(account));
 
-        Cost cost = new Cost("Danoy","Protein","Snacks?",300.33,"Euro",date);
-        costManagerDBModel.addNewCost(cost);
+        //Cost cost = new Cost("Danoy","Protein","Snacks?",300.33,"Euro",date);
+        //costManagerDBModel.addNewCost(cost);
 
     }
 }

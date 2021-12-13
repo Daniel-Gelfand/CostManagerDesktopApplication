@@ -9,18 +9,19 @@ public class CostManagerDBModel implements IModel {
     private List<Category> categories = new LinkedList<>();
     private Connection costManagerConnection = null;
     private Statement statement = null;
-    public CostManagerDBModel() {
+    public CostManagerDBModel() throws CostManagerExceptions {
         try {
             costManagerConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/costmanager", "CostManager", "CostManager");
             statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e)
+        {
+            throw new CostManagerExceptions("Problem With Connect To DataBase {PHPAdmin}");
         }
     }
 
     @Override
-    public void setupNewAccount(Account account) {
+    public void setupNewAccount(Account account) throws CostManagerExceptions {
 
         try {
             String query = "insert into accounts_db" + "(usernames,passwords,emails,first_name,last_name)"
@@ -36,12 +37,12 @@ public class CostManagerDBModel implements IModel {
             costManagerConnection.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw  new CostManagerExceptions("Problem With Insert New Account To DataBase!",e);
         }
     }
 
     @Override
-    public boolean loginToAccount(Account account) {
+    public boolean loginToAccount(Account account) throws CostManagerExceptions {
         boolean isRegistered = false;
         ResultSet resultSet = null;
         try {
@@ -61,23 +62,23 @@ public class CostManagerDBModel implements IModel {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            throw new CostManagerExceptions("Problem To Login Account in Database!",e);
         }
         return isRegistered;
     }
 
     @Override
-    public void addCategory(Category category) {
+    public void addCategory(Category category) throws CostManagerExceptions {
         categories.add(category);
     }
 
     @Override // option????????????????
-    public List<Category> getCategories() {
+    public List<Category> getCategories() throws CostManagerExceptions {
         return categories;
     }
 
     @Override
-    public void addNewCost(Cost cost) {
+    public void addNewCost(Cost cost) throws CostManagerExceptions{
 
         try {
             String query = "insert into main_db" + "(usernames,categories,description,cost,currency,date)"
@@ -94,18 +95,18 @@ public class CostManagerDBModel implements IModel {
             costManagerConnection.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new CostManagerExceptions("Problem With add Cost To Database!",e);
         }
 
     }
 
     @Override
-    public Connection getReport() {
+    public Connection getReport() throws CostManagerExceptions {
         return costManagerConnection;
     }
 
     @Override
-    public void logout() {
+    public void logout() throws CostManagerExceptions {
 
     }
 
