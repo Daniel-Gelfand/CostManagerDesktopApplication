@@ -51,12 +51,17 @@ public class CostManagerView implements IView {
     private JButton buttonAddNewCost;
     private JLabel labelCategoryAddNewCost;
     private JTextField textFieldCategoryAddNewCost;
+    private JLabel labelDateAddNewCost;
     private String [] currencyList = { "Dollar", "Shekel", "Euro", "Sterling" };
+    private String [] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+    private String [] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+    private String [] years = {"2020","2021","2022"};
+    private JComboBox daysCost;
+    private JComboBox monthCost;
+    private JComboBox yearsCost;
     private JComboBox currency;
     private JPanel addNewCostPanel;
     private JFrame addNewCostFrame;
-    private int joker = 4;
-
     public void loginFrame()
     {
 
@@ -141,6 +146,8 @@ public class CostManagerView implements IView {
         textFieldEmailRegister = new JTextField(15);
         textFieldEmailRegister.setBounds(150,290,150,30);
 
+        //Back Button -----> Maybe in future
+
         buttonCancelRegister = new JButton("Create");
         buttonCancelRegister.setBounds(50, 300, 100, 30); //
         buttonCreateRegister = new JButton("Cancel");
@@ -208,6 +215,12 @@ public class CostManagerView implements IView {
         buttonAddNewCost = new JButton("Add New Cost");
         labelCostAddNewCost = new JLabel("Cost: ");
         textFieldCostAddNewCost = new JTextField(10);
+
+        labelDateAddNewCost = new JLabel("Date: ");
+        daysCost = new JComboBox(days);
+        monthCost = new JComboBox(months);
+        yearsCost = new JComboBox(years);
+
         labelDescriptionCostAddNewCost = new JLabel("Description: ");
         textDescriptionsCostAddNewCost = new JTextField(10);
         labelCategoryAddNewCost = new JLabel("Category: ");
@@ -216,18 +229,27 @@ public class CostManagerView implements IView {
 
         labelCategoryAddNewCost.setBounds(100, 40, 100, 40);
         textFieldCategoryAddNewCost.setBounds(170,40,100,40);
-//        labelCostAddNewCost.setBounds();// needtodo
-//        textFieldCostAddNewCost.setBounds();// needtodo
-//        currency.setBounds();// needtodo
-//        labelDescriptionCostAddNewCost.setBounds();// needtodo
-//        textDescriptionsCostAddNewCost.setBounds();// needtodo
-//        buttonAddNewCost.setBounds(); // needtodo
-        // need  to this lines /\
+        labelDateAddNewCost.setBounds(300,40,100,30);
+        daysCost.setBounds(330,40,70,30);
+        monthCost.setBounds(390,40,70,30);
+        yearsCost.setBounds(450,40,100,30);
+
+        labelCostAddNewCost.setBounds(100,80,100,40);
+        textFieldCostAddNewCost.setBounds(170,80,100,40);
+        currency.setBounds(270,80,100,50);
+        labelDescriptionCostAddNewCost.setBounds(100,120,100,40);
+        textDescriptionsCostAddNewCost.setBounds(100,150,300,70);
+        buttonAddNewCost.setBounds(200,250,100,40);
+        //Back Button -----> Maybe in future
 
         addNewCostPanel = new JPanel();
         addNewCostPanel.setLayout(null);
         addNewCostPanel.add(labelCategoryAddNewCost);
         addNewCostPanel.add(textFieldCategoryAddNewCost);
+        addNewCostPanel.add(labelDateAddNewCost);
+        addNewCostPanel.add(daysCost); //
+        addNewCostPanel.add(monthCost); //
+        addNewCostPanel.add(yearsCost); //
         addNewCostPanel.add(labelCostAddNewCost);
         addNewCostPanel.add(textFieldCostAddNewCost);
         addNewCostPanel.add(currency);
@@ -239,7 +261,7 @@ public class CostManagerView implements IView {
         addNewCostPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         addNewCostFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addNewCostFrame.add(addNewCostPanel);
-        addNewCostFrame.setSize(500, 500);
+        addNewCostFrame.setSize(550, 350);
         addNewCostFrame.setLocationRelativeTo(null);
         addNewCostFrame.setVisible(true);
 
