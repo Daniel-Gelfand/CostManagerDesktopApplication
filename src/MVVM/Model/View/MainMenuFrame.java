@@ -6,6 +6,9 @@ import MVVM.Model.IViewModel;
 
 import javax.swing.*;
 
+
+
+
 public class MainMenuFrame {
 
     private JButton buttonAddNewCostMain;

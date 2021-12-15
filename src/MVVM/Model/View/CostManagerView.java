@@ -74,6 +74,7 @@ public class CostManagerView implements IView {
     public static void main(String[] args) {
         //CostManagerView costManagerView = new CostManagerView();
 
+
     }
 
 }

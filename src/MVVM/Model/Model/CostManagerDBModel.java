@@ -40,6 +40,7 @@ public class CostManagerDBModel implements IModel {
             System.out.println("Connected To DB!");
             String query = "insert into accounts_db" + "(usernames,passwords,emails,first_name,last_name)"
                     + "values (?,?,?,?,?)";
+
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
             System.out.println("Inserted To DB!");
             preparedStmt.setString(1, account.getUsername());
