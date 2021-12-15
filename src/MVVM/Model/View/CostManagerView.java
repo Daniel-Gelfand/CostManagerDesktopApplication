@@ -61,9 +61,14 @@ public class CostManagerView implements IView {
 
     @Override
     public void AddNewCostSuccessfully(Cost cost, Account account) {
-        JOptionPane.showMessageDialog(null,"The expense was successfully added!", "Cost added", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null,"The expense was successfully added!", "Cost added", JOptionPane.PLAIN_MESSAGE);
         this.m_AddNewCostFrame.toDispose();
         this.m_MainMenuFrame = new MainMenuFrame(viewModel, account);
+    }
+
+    @Override
+    public void UserDoesNotExist() {
+        JOptionPane.showMessageDialog(null,"User does not exist!", "Cost added", JOptionPane.WARNING_MESSAGE);
     }
 
     public static void main(String[] args) {

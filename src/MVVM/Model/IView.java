@@ -15,4 +15,5 @@ public interface IView {
     public void startAddNewCost(Account account);
     public void LogOutFromAccount();
     public void AddNewCostSuccessfully(Cost cost, Account account);
+    public void UserDoesNotExist();
 }

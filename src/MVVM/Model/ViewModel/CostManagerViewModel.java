@@ -47,14 +47,22 @@ public class CostManagerViewModel implements IViewModel {
             @Override
             public void run() {
                 try {
-                    model.loginToAccount(account);
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.LoginSuccessfully(account);
-                        }
-                    });
-
+                    if (model.loginToAccount(account)) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                view.LoginSuccessfully(account);
+                            }
+                        });
+                    }
+                    else {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                view.UserDoesNotExist();
+                            }
+                        });
+                    }
                 }
                 catch (CostManagerExceptions e) {
 

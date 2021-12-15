@@ -3,6 +3,7 @@ package MVVM.Model.Model;
 import MVVM.Model.*;
 
 import java.sql.*;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -120,8 +121,26 @@ public class CostManagerDBModel implements IModel {
     }
 
     @Override
-    public void getReport() throws CostManagerExceptions {
+    public Collection<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
+        try {
+            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            Statement statement = costManagerConnection.createStatement();
+            ResultSet resultSet;
+            Collection<Cost> costs = new LinkedList<>();
 
+            System.out.println("Connected To DB!");
+            String sql = "select * from main_db where usernames='" + account.getUsername() + "'and date >='" + start.toString() + "'and date <='" + end.toString() + "'";
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Cost cost = new Cost(resultSet.getString("usernames"), resultSet.getString("categories"), resultSet.getString("description"),
+                        resultSet.getDouble("cost"), resultSet.getString("currency"), resultSet.getDate("date"));
+
+                costs.add(cost);
+            }
+            return costs;
+        } catch (SQLException e) {
+            throw new CostManagerExceptions("Problem with get report", e);
+        }
     }
 
     @Override
