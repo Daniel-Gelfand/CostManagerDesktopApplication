@@ -28,7 +28,7 @@ public class MainMenuFrame {
         buttonReportsMain = new JButton("Reports");
         buttonLogOutMain = new JButton("Logout");
 
-        buttonAddNewCostMain.setBounds(100, 40, 100, 40);
+        buttonAddNewCostMain.setBounds(80, 40, 150, 40);
         buttonAddNewCostMain.addActionListener(e -> setButtonAddNewCostMain());
 
         buttonReportsMain.setBounds(100, 140, 100, 40);

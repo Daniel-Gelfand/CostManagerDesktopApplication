@@ -67,7 +67,7 @@ public class AddNewCostFrame {
         labelDescriptionCostAddNewCost.setBounds(100,120,100,40);
         textDescriptionsCostAddNewCost.setBounds(100,150,300,70);
 
-        buttonAddNewCost.setBounds(200,250,100,40);
+        buttonAddNewCost.setBounds(200,250,150,40);
         buttonAddNewCost.addActionListener(e -> setAddNewCostButton());
         //Back Button -----> Maybe in future
 
