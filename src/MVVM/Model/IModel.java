@@ -14,7 +14,7 @@ public interface IModel {
     public void addCategory(Category category) throws CostManagerExceptions;
     public List<Category> getCategories() throws CostManagerExceptions;
     public void addNewCost(Cost cost) throws CostManagerExceptions;
-    public Connection getReport() throws CostManagerExceptions;
+    public void getReport() throws CostManagerExceptions;
     public void logout() throws CostManagerExceptions;
 
 

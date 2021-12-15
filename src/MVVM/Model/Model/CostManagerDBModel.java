@@ -1,4 +1,6 @@
-package MVVM.Model;
+package MVVM.Model.Model;
+
+import MVVM.Model.*;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -13,12 +15,14 @@ import java.util.List;
 public class CostManagerDBModel implements IModel {
 
     private List<Category> categories = new LinkedList<>();
-    private Connection costManagerConnection = null;
-    private Statement statement = null;
+
+    private String url = "jdbc:mysql://localhost:3306/costmanager";
+    private String username = "CostManager";
+    private String password = "CostManager";
     public CostManagerDBModel() throws CostManagerExceptions {
         try {
-            costManagerConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/costmanager", "CostManager", "CostManager");
-            statement = costManagerConnection.createStatement();
+            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
         } catch (Exception e)
         {
@@ -30,6 +34,9 @@ public class CostManagerDBModel implements IModel {
     public void setupNewAccount(Account account) throws CostManagerExceptions {
 
         try {
+            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            Statement statement = costManagerConnection.createStatement();
+            System.out.println("Connected To DB!");
             String query = "insert into accounts_db" + "(usernames,passwords,emails,first_name,last_name)"
                     + "values (?,?,?,?,?)";
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
@@ -52,6 +59,9 @@ public class CostManagerDBModel implements IModel {
         boolean isRegistered = false;
         ResultSet resultSet = null;
         try {
+            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            Statement statement = costManagerConnection.createStatement();
+            System.out.println("Connected To DB!");
             if (account.getUsername() != null && account.getPassword() != null) {
                 String sql = "Select * from accounts_db Where usernames='" + account.getUsername() + "' and passwords='" + account.getPassword() + "'";
                 resultSet = statement.executeQuery(sql);
@@ -87,6 +97,9 @@ public class CostManagerDBModel implements IModel {
     public void addNewCost(Cost cost) throws CostManagerExceptions{
 
         try {
+            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            Statement statement = costManagerConnection.createStatement();
+            System.out.println("Connected To DB!");
             String query = "insert into main_db" + "(usernames,categories,description,cost,currency,date)"
                     + "values (?,?,?,?,?,?)";
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
@@ -107,8 +120,8 @@ public class CostManagerDBModel implements IModel {
     }
 
     @Override
-    public Connection getReport() throws CostManagerExceptions {
-        return costManagerConnection;
+    public void getReport() throws CostManagerExceptions {
+
     }
 
     @Override

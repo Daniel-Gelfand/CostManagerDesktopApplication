@@ -1,8 +1,11 @@
 package MVVM.Model;
 
+import MVVM.Model.Model.CostManagerDBModel;
+import MVVM.Model.View.CostManagerView;
+import MVVM.Model.ViewModel.CostManagerViewModel;
+
+import javax.swing.*;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * TEXT HERE...
@@ -14,22 +17,27 @@ public class Program {
     public static void main(String[] args) throws CostManagerExceptions {
 
 
-        Date date = new Date(121,11,10);
-        System.out.println(date.toString());
-//        System.out.println(now);
+        IModel model = new CostManagerDBModel();
+        IViewModel vm = new CostManagerViewModel();
+        IView view = new CostManagerView();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //view.init();
+                view.start();
+            }
+        });
+        vm.setModel(model);
+        vm.setView(view);
+        view.setIViewModel(vm);
+
+//        Cost cost1 = new Cost("maim", "Asos", "new item", 123.25, "Euro", new Date(121, 10, 2));
+//        Cost cost2 = new Cost("maim", "Asos", "new item", 123.25, "Euro", new Date(121, 10, 2));
 //
-//        System.out.println(date);
+//        CostManagerDBModel costManagerDBModel = new CostManagerDBModel();
+//        costManagerDBModel.addNewCost(cost1);
+//        costManagerDBModel.addNewCost(cost2);
 
-        CostManagerDBModel costManagerDBModel = new CostManagerDBModel();
-
-        Account account = new Account("Danoy","123456","Daniel","Gel",
-                "danoyoy@gmail.com");
-
-        costManagerDBModel.setupNewAccount(account);
-        //System.out.println(costManagerDBModel.loginToAccount(account));
-
-        //Cost cost = new Cost("Danoy","Protein","Snacks?",300.33,"Euro",date);
-        //costManagerDBModel.addNewCost(cost);
 
     }
 }

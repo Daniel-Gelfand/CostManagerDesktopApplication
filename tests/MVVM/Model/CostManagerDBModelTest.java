@@ -1,10 +1,10 @@
 package MVVM.Model;
 
+import MVVM.Model.Model.CostManagerDBModel;
+
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CostManagerDBModelTest {
     CostManagerDBModel costManagerDBModel;
