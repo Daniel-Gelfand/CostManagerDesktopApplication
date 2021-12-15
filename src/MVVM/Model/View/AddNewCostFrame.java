@@ -98,12 +98,12 @@ public class AddNewCostFrame {
     public void setAddNewCostButton() {
         String username = account.getUsername();
         String description = textDescriptionsCostAddNewCost.getText();
-        //int currency = this.currency.getSelectedIndex();
+        String currency = convertCurrencyToString(this.currency.getSelectedIndex());
         String category = textFieldCategoryAddNewCost.getText();
         double amount = Double.parseDouble(textFieldCostAddNewCost.getText());
         Date date = new Date(yearsCost.getSelectedIndex() + 119, monthCost.getSelectedIndex() - 1, daysCost.getSelectedIndex());
 
-        Cost cost = new Cost(username, category, description, amount, "dollar" , date);
+        Cost cost = new Cost(username, category, description, amount, currency , date);
         System.out.println("Matan");
         System.out.println(category);
         System.out.println(date.toString());
@@ -113,8 +113,23 @@ public class AddNewCostFrame {
         System.out.println(yearsCost.getSelectedIndex());
         System.out.println(currency);
         viewModel.addNewCost(cost, account);
-
         //addNewCostFrame.dispose();
+    }
+
+    public String convertCurrencyToString(int index) {
+        String currency;
+        switch (index) {
+            case 0:
+                return "Dollar";
+            case 1:
+                return "Shekel";
+            case 2:
+                return "Euro";
+            case 3:
+                return "Sterling";
+                default:
+                    return null;
+        }
     }
 
     public void toDispose() {

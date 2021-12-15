@@ -91,8 +91,11 @@ public class RegisterFrame{
 
     public void setButtonCancelRegister()
     {
+        viewModel.finishSignUp();
+    }
+
+    public void toDispose() {
         registerFrame.dispose();
-        LoginFrame loginFrame = new LoginFrame(viewModel);
     }
 
 

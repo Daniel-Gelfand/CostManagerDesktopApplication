@@ -84,6 +84,18 @@ public class CostManagerView implements IView {
         m_ReportsFrame.showReportsByDate(costs);
     }
 
+    @Override
+    public void closeSignUpFrame() {
+        m_RegisterFrame.toDispose();
+        m_LoginFrame = new LoginFrame(viewModel);
+    }
+
+    @Override
+    public void openSignUpFrame() {
+        m_LoginFrame.toDispose();
+        m_RegisterFrame = new RegisterFrame(viewModel);
+    }
+
     public static void main(String[] args) {
         //CostManagerView costManagerView = new CostManagerView();
 

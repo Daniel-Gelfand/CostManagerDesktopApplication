@@ -21,4 +21,6 @@ public interface IView {
     public void UserDoesNotExist();
     public void startReports(Account account);
     public void showReports(LinkedList<Cost> costs);
+    public void closeSignUpFrame();
+    public void openSignUpFrame();
 }

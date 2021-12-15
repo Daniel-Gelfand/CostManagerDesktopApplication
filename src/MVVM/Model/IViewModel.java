@@ -16,4 +16,6 @@ public interface IViewModel {
     public void logout();
     public void startNewCost(Account account);
     public void goToReports(Account account);
+    public void finishSignUp();
+    public void openSignUpPage();
 }

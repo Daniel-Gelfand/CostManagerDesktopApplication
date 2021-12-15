@@ -36,6 +36,12 @@ public class CostManagerViewModel implements IViewModel {
             public void run() {
                 try {
                     model.setupNewAccount(account);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.closeSignUpFrame();
+                        }
+                    });
                 }
                 catch (CostManagerExceptions e) {
                     view.showUsernameIsTaken();
@@ -178,6 +184,46 @@ public class CostManagerViewModel implements IViewModel {
                         @Override
                         public void run() {
                             view.startReports(account);
+                        }
+                    });
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void finishSignUp() {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.closeSignUpFrame();
+                        }
+                    });
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void openSignUpPage() {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.openSignUpFrame();
                         }
                     });
                 }

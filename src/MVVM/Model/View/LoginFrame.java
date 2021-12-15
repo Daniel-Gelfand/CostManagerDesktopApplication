@@ -28,6 +28,7 @@ public class LoginFrame {
         this.viewModel = viewModel;
 
         loginFrame = new JFrame();
+
         labelUserName = new JLabel("Username: ");
         labelUserName.setBounds(50, 150, 100, 30);//
         textFieldUserName = new JTextField(15);
@@ -75,8 +76,7 @@ public class LoginFrame {
     }
 
     public void setSignUpButton() {
-        loginFrame.dispose();
-        RegisterFrame registerFrame = new RegisterFrame(viewModel);
+        viewModel.openSignUpPage();
     }
 
     public void toDispose() {
