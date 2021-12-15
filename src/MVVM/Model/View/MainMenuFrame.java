@@ -35,6 +35,7 @@ public class MainMenuFrame {
         buttonAddNewCostMain.addActionListener(e -> setButtonAddNewCostMain());
 
         buttonReportsMain.setBounds(100, 140, 100, 40);
+        buttonReportsMain.addActionListener(e -> setButtonReportsMain());
 
         buttonLogOutMain.setBounds(100,230,100,40);
         buttonLogOutMain.addActionListener(e -> setButtonLogOutMain());
@@ -57,6 +58,7 @@ public class MainMenuFrame {
     }
 
     public void setButtonReportsMain() {
+        viewModel.goToReports(account);
 
     }
 

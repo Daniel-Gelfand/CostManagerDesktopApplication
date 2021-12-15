@@ -3,6 +3,9 @@ package MVVM.Model.ViewModel;
 import MVVM.Model.*;
 
 import javax.swing.*;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -104,7 +107,24 @@ public class CostManagerViewModel implements IViewModel {
     }
 
     @Override
-    public void getReport() {
+    public void getReport(Account account, Date start, Date end) {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    LinkedList<Cost> resultSet = model.getReport(account, start, end);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.showReports(resultSet);
+                        }
+                    });
+                }
+                catch (CostManagerExceptions e) {
+
+                }
+            }
+        });
 
     }
 
@@ -142,6 +162,26 @@ public class CostManagerViewModel implements IViewModel {
                         }
                     });
                 }catch (Exception e) {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void goToReports(Account account) {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.startReports(account);
+                        }
+                    });
+                }
+                catch (Exception e) {
 
                 }
             }

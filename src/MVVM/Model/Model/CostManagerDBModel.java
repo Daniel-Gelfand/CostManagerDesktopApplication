@@ -122,12 +122,12 @@ public class CostManagerDBModel implements IModel {
     }
 
     @Override
-    public Collection<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
+    public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
         try {
             Connection costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             ResultSet resultSet;
-            Collection<Cost> costs = new LinkedList<>();
+            LinkedList<Cost> costs = new LinkedList<>();
 
             System.out.println("Connected To DB!");
             String sql = "select * from main_db where usernames='" + account.getUsername() + "'and date >='" + start.toString() + "'and date <='" + end.toString() + "'";

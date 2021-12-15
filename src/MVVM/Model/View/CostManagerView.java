@@ -7,6 +7,8 @@ import MVVM.Model.IViewModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.util.TimerTask;
 
 /**
@@ -22,6 +24,7 @@ public class CostManagerView implements IView {
     private LoginFrame m_LoginFrame;
     private MainMenuFrame m_MainMenuFrame;
     private AddNewCostFrame m_AddNewCostFrame;
+    private ReportsFrame m_ReportsFrame;
 
 
 
@@ -69,6 +72,16 @@ public class CostManagerView implements IView {
     @Override
     public void UserDoesNotExist() {
         JOptionPane.showMessageDialog(null,"User does not exist!", "Cost added", JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public void startReports(Account account) {
+        m_ReportsFrame = new ReportsFrame(viewModel, account);
+    }
+
+    @Override
+    public void showReports(LinkedList<Cost> costs) {
+        m_ReportsFrame.showReportsByDate(costs);
     }
 
     public static void main(String[] args) {

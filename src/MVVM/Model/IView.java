@@ -1,6 +1,9 @@
 package MVVM.Model;
 
 
+import java.sql.ResultSet;
+import java.util.LinkedList;
+
 /**
  * TEXT HERE...
  */
@@ -16,4 +19,6 @@ public interface IView {
     public void LogOutFromAccount();
     public void AddNewCostSuccessfully(Cost cost, Account account);
     public void UserDoesNotExist();
+    public void startReports(Account account);
+    public void showReports(LinkedList<Cost> costs);
 }
