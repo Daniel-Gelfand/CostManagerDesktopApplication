@@ -6,7 +6,10 @@ import MVVM.Model.IViewModel;
 
 import javax.swing.*;
 
-
+/**
+ * This Class is Gui of Main Menu Page.
+ *
+ */
 
 
 public class MainMenuFrame {

@@ -2,7 +2,9 @@ package MVVM.Model;
 
 
 /**
- * TEXT HERE...
+ *
+ * This class encapsulate all details about account.
+ * Ctor,Getters & Setters
  */
 
 

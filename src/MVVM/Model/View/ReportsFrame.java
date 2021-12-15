@@ -13,6 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+/**
+ * This Class is Gui of Reports Page.
+ *
+ */
 
 public class ReportsFrame {
     private Account account;

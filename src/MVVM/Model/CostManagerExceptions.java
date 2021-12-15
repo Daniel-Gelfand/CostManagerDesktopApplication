@@ -3,7 +3,8 @@ package MVVM.Model;
 import java.sql.SQLException;
 
 /**
- * TEXT HERE...
+ * This class throws CostManger specific exceptions.
+ * Ctor.
  */
 
 

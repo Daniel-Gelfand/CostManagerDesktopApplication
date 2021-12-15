@@ -6,7 +6,9 @@ import java.util.*;
 
 
 /**
- * TEXT HERE...
+ *
+ * This class Encapsulate all details about some cost.
+ * Ctor,Getters & Setters.
  */
 
 

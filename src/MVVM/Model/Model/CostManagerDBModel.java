@@ -9,17 +9,23 @@ import java.util.List;
 
 
 /**
- * TEXT HERE...
+ *
+ * This Class implements IModel, responsible for transitions between database to CostManager System
+ *
  */
 
 
 public class CostManagerDBModel implements IModel {
 
+    // This List not in use yet.
     private List<Category> categories = new LinkedList<>();
 
+    // login details to sql server
     private String url = "jdbc:mysql://localhost:3306/costmanager";
     private String username = "CostManager";
     private String password = "CostManager";
+
+    // This Ctor connect to database Sql server.
     public CostManagerDBModel() throws CostManagerExceptions {
         try {
             Connection costManagerConnection = DriverManager.getConnection(url, username, password);
@@ -31,6 +37,7 @@ public class CostManagerDBModel implements IModel {
         }
     }
 
+    // This method set new account in database.
     @Override
     public void setupNewAccount(Account account) throws CostManagerExceptions {
 
@@ -56,6 +63,7 @@ public class CostManagerDBModel implements IModel {
         }
     }
 
+    // This method search account in database and returns true or false in accordance.
     @Override
     public boolean loginToAccount(Account account) throws CostManagerExceptions {
         boolean isRegistered = false;
@@ -85,16 +93,19 @@ public class CostManagerDBModel implements IModel {
         return isRegistered;
     }
 
+    // This method not in use yet.
     @Override
     public void addCategory(Category category) throws CostManagerExceptions {
         categories.add(category);
     }
 
-    @Override // option????????????????
+    // This method not in use yet.
+    @Override
     public List<Category> getCategories() throws CostManagerExceptions {
         return categories;
     }
 
+    // This method add new cost to the database.
     @Override
     public void addNewCost(Cost cost) throws CostManagerExceptions{
 
@@ -121,6 +132,7 @@ public class CostManagerDBModel implements IModel {
 
     }
 
+    // This method returns reports about costs by selected dates.
     @Override
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
         try {
@@ -144,6 +156,7 @@ public class CostManagerDBModel implements IModel {
         }
     }
 
+    // This method we need to delete. -------> Ask Michael Life. ViewManager?
     @Override
     public void logout() throws CostManagerExceptions {
 

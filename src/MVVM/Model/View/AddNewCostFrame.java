@@ -7,6 +7,11 @@ import MVVM.Model.IViewModel;
 import javax.swing.*;
 import java.sql.Date;
 
+/**
+ * This Class is Gui of Add New Cost Page.
+ *
+ */
+
 public class AddNewCostFrame {
 
     private JLabel labelCostAddNewCost;

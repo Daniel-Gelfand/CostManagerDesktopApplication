@@ -16,7 +16,7 @@ class CostManagerDBModelTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() throws CostManagerExceptions {
-        account = new Account("juniTESTv3AfterCMExceptions","123456","Junit","test","junitCMExceptions@test.com");
+        account = new Account("juniTESTv43AfterCMExceptions","123456","Junit","test","junitCMExceptions@test.com");
         costManagerDBModel = new CostManagerDBModel();
         cost = new Cost("juniTESTv3AfterCMExceptions","TEST","juniTESTv2AfterCMExceptions",999.99,"TEST",date);
         category = new Category("TEST");

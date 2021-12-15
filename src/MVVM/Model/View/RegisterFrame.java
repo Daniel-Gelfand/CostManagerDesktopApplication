@@ -7,6 +7,11 @@ import MVVM.Model.View.LoginFrame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This Class is Gui of Register Page.
+ *
+ */
+
 public class RegisterFrame{
 
     private JFrame registerFrame;

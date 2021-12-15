@@ -9,6 +9,13 @@ import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This Class implements IViewModel, responsible for transitions between screens and connecting between
+ * the view to the model.
+ *
+ *
+ */
+
 public class CostManagerViewModel implements IViewModel {
 
     private IView view;
@@ -29,6 +36,8 @@ public class CostManagerViewModel implements IViewModel {
         this.model = model;
     }
 
+
+    // This method start setup new account (turn to the model, that register new account).
     @Override
     public void setupNewAccount(Account account) {
         service.submit(new Runnable() {
@@ -50,6 +59,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method login to account (turn to the model and check if user exists, and doing actions accordingly).
     @Override
     public void loginToAccount(Account account) {
         service.submit(new Runnable() {
@@ -80,16 +90,19 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method not in use yet.
     @Override
     public void addCategory(Category category) {
 
     }
 
+    // This method not in use yet.
     @Override
     public void getCategories() {
 
     }
 
+    // This method turn to the  model and adding new cost the appropriate database.
     @Override
     public void addNewCost(Cost cost, Account account) {
         service.submit(new Runnable() {
@@ -112,6 +125,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method turns to the model to get list of costs for specific user.
     @Override
     public void getReport(Account account, Date start, Date end) {
         service.submit(new Runnable() {
@@ -134,6 +148,7 @@ public class CostManagerViewModel implements IViewModel {
 
     }
 
+    // This method turn to the model and logout and turn the user to the main page.
     @Override
     public void logout() {
         service.submit(new Runnable() {
@@ -155,6 +170,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method switch between screens in the view. From Main Page --> Add New Cost Page.
     @Override
     public void startNewCost(Account account) {
         service.submit(new Runnable() {
@@ -174,6 +190,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method switch between screens in the view. From Main Page --> Reports Page.
     @Override
     public void goToReports(Account account) {
         service.submit(new Runnable() {
@@ -194,6 +211,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method switch between screens in the view. From Signup Page --> Login Page.
     @Override
     public void finishSignUp() {
         service.submit(new Runnable() {
@@ -214,6 +232,7 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
+    // This method switch between screens in the view. From Login Page --> Signup Page
     @Override
     public void openSignUpPage() {
         service.submit(new Runnable() {

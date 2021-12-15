@@ -6,6 +6,11 @@ import MVVM.Model.IViewModel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This Class is Gui of Login Page.
+ *
+ */
+
 public class LoginFrame {
     private JFrame loginFrame;
     private JPanel loginPanel;

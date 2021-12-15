@@ -2,7 +2,9 @@ package MVVM.Model;
 
 
 /**
- * TEXT HERE...
+ *  This class not in use right now.
+ *
+ *
  */
 
 
