@@ -63,6 +63,9 @@ public class RegisterFrame{
 
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
         registerFrame.setIconImage(icon);
+        buttonCreateRegister.setBackground(new Color(183,244,216));
+        buttonCancelRegister.setBackground(new Color(241,90,34));
+
 
 
         registerFrame.setTitle("Register Form");
