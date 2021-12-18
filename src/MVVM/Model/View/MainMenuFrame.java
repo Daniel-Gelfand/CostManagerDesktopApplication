@@ -22,6 +22,7 @@ public class MainMenuFrame {
     private JFrame mainFrame;
     private IViewModel viewModel;
     private Account account;
+    private JLabel labelHelloUser;
 
     public MainMenuFrame(IViewModel viewModel, Account account) {
         this.viewModel = viewModel;
@@ -35,6 +36,11 @@ public class MainMenuFrame {
         buttonAddNewCostMain = new JButton("Add New Cost");
         buttonReportsMain = new JButton("Reports");
         buttonLogOutMain = new JButton("Logout");
+
+
+        labelHelloUser = new JLabel("Hello " + account.getUsername() + "!");
+        labelHelloUser.setBounds(2,2,150,40);
+        labelHelloUser.setFont(new Font("", Font.BOLD, 14));
 
         buttonAddNewCostMain.setBackground(new Color(183,244,216));
         buttonReportsMain.setBackground(new Color(254,250,212));
@@ -54,6 +60,7 @@ public class MainMenuFrame {
         buttonLogOutMain.addActionListener(e -> setButtonLogOutMain());
 
         mainPanel.setLayout(null);
+        mainPanel.add(labelHelloUser); //
         mainPanel.add(buttonAddNewCostMain);
         mainPanel.add(buttonReportsMain);
         mainPanel.add(buttonLogOutMain);
