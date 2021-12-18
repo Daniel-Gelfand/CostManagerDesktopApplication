@@ -34,6 +34,8 @@ public class LoginFrame {
 
         loginFrame = new JFrame();
 
+
+
         labelUserName = new JLabel("Username: ");
         labelUserName.setBounds(50, 150, 100, 30);//
         textFieldUserName = new JTextField(15);
@@ -54,8 +56,16 @@ public class LoginFrame {
 
         loginPanel = new JPanel();
 
+
+        buttonLogin.setBackground(new Color(183,244,216));
+        buttonSignUp.setBackground(new Color(254,250,212));
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        loginFrame.setIconImage(icon);
+
+
         loginFrame.setTitle("Login Form");
-        loginPanel.setBackground(Color.WHITE);
+        //loginPanel.setBackground(Color.WHITE);
+        loginPanel.setBackground(new Color(45,85,255));
         loginPanel.setLayout(new FlowLayout());
         loginPanel.add(labelUserName);
         loginPanel.add(textFieldUserName);

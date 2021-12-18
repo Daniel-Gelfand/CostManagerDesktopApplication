@@ -85,6 +85,8 @@ public class CostManagerDBModel implements IModel {
                     isRegistered = false;
                 }
             }
+            costManagerConnection.close(); // Here?
+            statement.close(); // Here?
         }
         catch (SQLException e)
         {
@@ -124,7 +126,8 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.setString(5, cost.getCurrency());
             preparedStmt.setDate(6, cost.getDate());
             preparedStmt.execute();
-            costManagerConnection.close();
+            costManagerConnection.close(); // Here?
+            statement.close(); // Here?
 
         } catch (SQLException e) {
             throw new CostManagerExceptions("Problem With add Cost To Database!",e);
@@ -150,16 +153,32 @@ public class CostManagerDBModel implements IModel {
 
                 costs.add(cost);
             }
+            costManagerConnection.close(); // Here?
+            statement.close(); // Here?
+
             return costs;
         } catch (SQLException e) {
             throw new CostManagerExceptions("Problem with get report", e);
         }
+
     }
+
+
 
     // This method we need to delete. -------> Ask Michael Life. ViewManager?
     @Override
     public void logout() throws CostManagerExceptions {
 
+    }
+
+    private static void close(Connection myConn, Statement myStmt) throws SQLException {
+        if (myStmt != null) {
+            myStmt.close();
+        }
+
+        if (myConn != null) {
+            myConn.close();
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import MVVM.Model.Cost;
 import MVVM.Model.IViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Date;
 
 /**
@@ -24,7 +25,7 @@ public class AddNewCostFrame {
     private JLabel labelDateAddNewCost;
     private String [] currencyList = { "Dollar", "Shekel", "Euro", "Sterling" };
     private String [] days = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private String [] months = {"0","1","2","3","4","5","6","7","8","9","10","11","12"};
+    private String [] months = {"0","1","2","3","4","5","6","7","8","9","10","11","12"}; // why 0 ?
     private String [] years = {"2019","2020","2021","2022"};
     private JComboBox daysCost;
     private JComboBox monthCost;
@@ -48,6 +49,12 @@ public class AddNewCostFrame {
         labelCostAddNewCost = new JLabel("Cost: ");
         textFieldCostAddNewCost = new JTextField(10);
 
+
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        addNewCostFrame.setIconImage(icon);
+        buttonAddNewCost.setBackground(new Color(183,244,216));
+
+
         labelDateAddNewCost = new JLabel("Date: ");
         daysCost = new JComboBox(days);
         monthCost = new JComboBox(months);
@@ -68,7 +75,7 @@ public class AddNewCostFrame {
 
         labelCostAddNewCost.setBounds(100,80,100,40);
         textFieldCostAddNewCost.setBounds(170,80,100,40);
-        currency.setBounds(270,80,100,50);
+        currency.setBounds(270,80,100,40);
         labelDescriptionCostAddNewCost.setBounds(100,120,100,40);
         textDescriptionsCostAddNewCost.setBounds(100,150,300,70);
 
@@ -77,6 +84,7 @@ public class AddNewCostFrame {
         //Back Button -----> Maybe in future
 
         addNewCostPanel = new JPanel();
+        addNewCostPanel.setBackground(new Color(45,85,255)); ///
         addNewCostPanel.setLayout(null);
         addNewCostPanel.add(labelCategoryAddNewCost);
         addNewCostPanel.add(textFieldCategoryAddNewCost);
@@ -95,7 +103,7 @@ public class AddNewCostFrame {
         addNewCostPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         addNewCostFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addNewCostFrame.add(addNewCostPanel);
-        addNewCostFrame.setSize(550, 350);
+        addNewCostFrame.setSize(570, 370);
         addNewCostFrame.setLocationRelativeTo(null);
         addNewCostFrame.setVisible(true);
     }

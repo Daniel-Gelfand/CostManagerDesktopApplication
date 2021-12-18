@@ -71,7 +71,7 @@ public class ReportsFrame {
         buttonSendToGetReport = new JButton("Send To Get Report");
         buttonSendToGetReport.addActionListener(e -> setReportsButton());
 
-        labelSumReports = new JLabel("Sum");
+        labelSumReports = new JLabel("Total sum in ILS: ");
         textFieldSumReports = new JTextField(20);
 
         reportsFrame.setLayout(new BorderLayout());
@@ -86,6 +86,11 @@ public class ReportsFrame {
         reportsPanel = new JPanel();
         reportsPanelNorth = new JPanel();
         reportsPanelSouth = new JPanel();
+
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        reportsFrame.setIconImage(icon);
+        buttonSendToGetReport.setBackground(new Color(183,244,216));
+
 
         reportsPanel.setPreferredSize(new Dimension(100,100));
         reportsPanelNorth.setPreferredSize(new Dimension(100,100));
@@ -104,9 +109,14 @@ public class ReportsFrame {
         reportsPanelSouth.add(labelSumReports);
         reportsPanelSouth.add(textFieldSumReports);
         reportsPanel.add(pane);
-        reportsPanel.setBackground(Color.WHITE);
-        reportsPanelNorth.setBackground(Color.WHITE);
-        reportsPanelSouth.setBackground(Color.WHITE);
+//        reportsPanel.setBackground(Color.WHITE);
+//        reportsPanelNorth.setBackground(Color.WHITE);
+//        reportsPanelSouth.setBackground(Color.WHITE);
+
+        reportsPanel.setBackground(new Color(45,85,255));
+        reportsPanelNorth.setBackground(new Color(45,85,255));
+        reportsPanelSouth.setBackground(new Color(45,85,255));
+
         reportsFrame.add(reportsPanel,BorderLayout.CENTER);
         reportsFrame.add(reportsPanelNorth,BorderLayout.NORTH);
         reportsFrame.add(reportsPanelSouth,BorderLayout.SOUTH);
@@ -175,7 +185,7 @@ public class ReportsFrame {
         buttonSendToGetReport = new JButton("Send To Get Report");
         buttonSendToGetReport.addActionListener(e -> setReportsButton());
 
-        labelSumReports = new JLabel("Total sum in ILS");
+        labelSumReports = new JLabel("Total sum in ILS: ");
         textFieldSumReports = new JTextField(20);
         textFieldSumReports.setText(sum + "");
 
@@ -205,9 +215,15 @@ public class ReportsFrame {
         reportsPanelSouth.add(labelSumReports);
         reportsPanelSouth.add(textFieldSumReports);
         reportsPanel.add(pane);
-        reportsPanel.setBackground(Color.WHITE);
-        reportsPanelNorth.setBackground(Color.WHITE);
-        reportsPanelSouth.setBackground(Color.WHITE);
+
+//        reportsPanel.setBackground(Color.WHITE);
+//        reportsPanelNorth.setBackground(Color.WHITE);
+//        reportsPanelSouth.setBackground(Color.WHITE);
+        reportsPanel.setBackground(new Color(45,85,255));
+        reportsPanelNorth.setBackground(new Color(45,85,255));
+        reportsPanelSouth.setBackground(new Color(45,85,255));
+
+
         reportsFrame.add(reportsPanel,BorderLayout.CENTER);
         reportsFrame.add(reportsPanelNorth,BorderLayout.NORTH);
         reportsFrame.add(reportsPanelSouth,BorderLayout.SOUTH);

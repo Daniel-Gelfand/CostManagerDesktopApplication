@@ -61,8 +61,12 @@ public class RegisterFrame{
         labelAgreeTermsRegister.setBounds(200,300,100,30);
         registerPanel = new JPanel();
 
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        registerFrame.setIconImage(icon);
+
+
         registerFrame.setTitle("Register Form");
-        registerPanel.setBackground(Color.WHITE);
+        registerPanel.setBackground(new Color(45,85,255));
         registerPanel.setLayout(new FlowLayout());
         registerPanel.add(labelUserNameRegister);
         registerPanel.add(textFieldUserNameRegister);
@@ -75,7 +79,7 @@ public class RegisterFrame{
         registerPanel.add(labelAgreeTermsRegister);
         registerFrame.setLayout(new BorderLayout());
         registerFrame.add(registerPanel,BorderLayout.CENTER);
-        registerFrame.setSize(300,300);
+        registerFrame.setSize(300,200);
         registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registerFrame.setLocationRelativeTo(null); // Give Me The Window Login In Center Of Screen
         registerFrame.setVisible(true);
