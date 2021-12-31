@@ -28,39 +28,31 @@ public class MainMenuFrame {
         this.viewModel = viewModel;
         this.account = account;
 
+
         mainFrame = new JFrame();
         mainFrame.setTitle("Main Form");
+        mainFrame.setLayout(new BorderLayout());
         mainPanel = new JPanel();
-        mainPanel.setBackground(new Color(45,85,255)); ///////// COLORRRRRRRRRRRRRRRRR
+        mainPanel.setBackground(new Color(45,85,255));
         mainFrame.getContentPane();
         buttonAddNewCostMain = new JButton("Add New Cost");
         buttonReportsMain = new JButton("Reports");
         buttonLogOutMain = new JButton("Logout");
-
-
         labelHelloUser = new JLabel("Hello " + account.getUsername() + "!");
         labelHelloUser.setBounds(2,2,150,40);
         labelHelloUser.setFont(new Font("", Font.BOLD, 14));
-
         buttonAddNewCostMain.setBackground(new Color(183,244,216));
         buttonReportsMain.setBackground(new Color(254,250,212));
         buttonLogOutMain.setBackground(new Color(241,90,34));
 
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+
         mainFrame.setIconImage(icon);
-
-
-        buttonAddNewCostMain.setBounds(70, 40, 150, 40);
         buttonAddNewCostMain.addActionListener(e -> setButtonAddNewCostMain());
-
-        buttonReportsMain.setBounds(70, 140, 150, 40);
         buttonReportsMain.addActionListener(e -> setButtonReportsMain());
-
-        buttonLogOutMain.setBounds(70,240,150,40);
         buttonLogOutMain.addActionListener(e -> setButtonLogOutMain());
-
-        mainPanel.setLayout(null);
-        mainPanel.add(labelHelloUser); //
+        mainPanel.setLayout(new GridLayout(3,1));
+        mainPanel.add(labelHelloUser);
         mainPanel.add(buttonAddNewCostMain);
         mainPanel.add(buttonReportsMain);
         mainPanel.add(buttonLogOutMain);

@@ -33,35 +33,25 @@ public class RegisterFrame{
 
     public RegisterFrame(IViewModel viewModel) {
         this.viewModel = viewModel;
+
         registerFrame = new JFrame();
         labelUserNameRegister = new JLabel("Username: ");
-        labelUserNameRegister.setBounds(50, 150, 100, 30);//
         textFieldUserNameRegister = new JTextField(15);
-        textFieldUserNameRegister.setBounds(150, 150, 150, 30); //
         labelPasswordRegister = new JLabel("Password: ");
-        labelPasswordRegister.setBounds(50, 220, 100, 30); // --
         textFieldPasswordRegister = new JPasswordField(15);
-        textFieldPasswordRegister.setBounds(150, 220, 150, 30);// --
         labelEmailRegister = new JLabel("Email:        ");
         labelEmailRegister.setBounds(50,270,100,30);
         textFieldEmailRegister = new JTextField(15);
-        textFieldEmailRegister.setBounds(150,290,150,30);
-
-        //Back Button -----> Maybe in future
-
         buttonCancelRegister = new JButton("Cancel");
-        buttonCancelRegister.setBounds(50, 300, 100, 30); //
         buttonCancelRegister.addActionListener(e -> setButtonCancelRegister());
-
         buttonCreateRegister = new JButton("Create");
-        buttonCreateRegister.setBounds(200, 300, 100, 30); //
         buttonCreateRegister.addActionListener(e -> setButtonCreateRegister());
-
         labelAgreeTermsRegister = new JLabel("By Clicking 'Create', I Agree with Terms & Policy");
-        labelAgreeTermsRegister.setBounds(200,300,100,30);
+
         registerPanel = new JPanel();
 
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+
         registerFrame.setIconImage(icon);
         buttonCreateRegister.setBackground(new Color(183,244,216));
         buttonCancelRegister.setBackground(new Color(241,90,34));
@@ -83,6 +73,7 @@ public class RegisterFrame{
         registerFrame.setLayout(new BorderLayout());
         registerFrame.add(registerPanel,BorderLayout.CENTER);
         registerFrame.setSize(300,200);
+        registerFrame.setResizable(false); ////////// ------------->
         registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registerFrame.setLocationRelativeTo(null); // Give Me The Window Login In Center Of Screen
         registerFrame.setVisible(true);

@@ -44,62 +44,47 @@ public class AddNewCostFrame {
         addNewCostFrame = new JFrame();
         addNewCostFrame.setTitle("Add New Cost Form");
         addNewCostPanel = new JPanel();
+
         addNewCostFrame.getContentPane();
+
         buttonAddNewCost = new JButton("Add New Cost");
         labelCostAddNewCost = new JLabel("Cost: ");
         textFieldCostAddNewCost = new JTextField(10);
-
-
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+
         addNewCostFrame.setIconImage(icon);
         buttonAddNewCost.setBackground(new Color(183,244,216));
-
 
         labelDateAddNewCost = new JLabel("Date: ");
         daysCost = new JComboBox(days);
         monthCost = new JComboBox(months);
         yearsCost = new JComboBox(years);
-
         labelDescriptionCostAddNewCost = new JLabel("Description: ");
         textDescriptionsCostAddNewCost = new JTextField(10);
         labelCategoryAddNewCost = new JLabel("Category: ");
         textFieldCategoryAddNewCost = new JTextField(10);
         currency = new JComboBox(currencyList);
 
-        labelCategoryAddNewCost.setBounds(100, 40, 100, 40);
-        textFieldCategoryAddNewCost.setBounds(170,40,100,40);
-        labelDateAddNewCost.setBounds(300,40,100,30);
-        daysCost.setBounds(330,40,70,30);
-        monthCost.setBounds(390,40,70,30);
-        yearsCost.setBounds(450,40,100,30);
 
-        labelCostAddNewCost.setBounds(100,80,100,40);
-        textFieldCostAddNewCost.setBounds(170,80,100,40);
-        currency.setBounds(270,80,100,40);
-        labelDescriptionCostAddNewCost.setBounds(100,120,100,40);
-        textDescriptionsCostAddNewCost.setBounds(100,150,300,70);
-
-        buttonAddNewCost.setBounds(200,250,150,40);
         buttonAddNewCost.addActionListener(e -> setAddNewCostButton());
-        //Back Button -----> Maybe in future
 
         addNewCostPanel = new JPanel();
-        addNewCostPanel.setBackground(new Color(45,85,255)); ///
-        addNewCostPanel.setLayout(null);
+
+        addNewCostPanel.setLayout(new FlowLayout());
+        addNewCostPanel.setBackground(new Color(45,85,255));
         addNewCostPanel.add(labelCategoryAddNewCost);
         addNewCostPanel.add(textFieldCategoryAddNewCost);
         addNewCostPanel.add(labelDateAddNewCost);
-        addNewCostPanel.add(daysCost); //
-        addNewCostPanel.add(monthCost); //
-        addNewCostPanel.add(yearsCost); //
+        addNewCostPanel.add(daysCost);
+        addNewCostPanel.add(monthCost);
+        addNewCostPanel.add(yearsCost);
         addNewCostPanel.add(labelCostAddNewCost);
         addNewCostPanel.add(textFieldCostAddNewCost);
         addNewCostPanel.add(currency);
         addNewCostPanel.add(labelDescriptionCostAddNewCost);
         addNewCostPanel.add(textDescriptionsCostAddNewCost);
         addNewCostPanel.add(buttonAddNewCost);
-
-        addNewCostPanel.setLayout(null);
+        addNewCostFrame.setLayout(new BorderLayout());
         addNewCostPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         addNewCostFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addNewCostFrame.add(addNewCostPanel);
