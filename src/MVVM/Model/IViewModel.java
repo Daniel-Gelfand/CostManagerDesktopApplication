@@ -38,15 +38,6 @@ public interface IViewModel {
     // This method logout account from the system.
     public void logout();
 
-    // This method open the AddNewCost frame.
-    public void startNewCost(Account account);
-
-    // This method open the Reports frame.
-    public void goToReports(Account account);
-
     // This method close the signup frame.
     public void finishSignUp();
-
-    // This method open the signup frame.
-    public void openSignUpPage();
 }

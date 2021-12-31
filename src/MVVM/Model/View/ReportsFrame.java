@@ -44,7 +44,7 @@ public class ReportsFrame {
     private JPanel reportsPanelSouth;
     private JLabel labelSumReports;
     private JTextField textFieldSumReports;
-    private ResultSet resultSet;
+
 
 
 
@@ -166,9 +166,7 @@ public class ReportsFrame {
     public void setTableByDates(String[][] data, String[] columns , double sum) {
 
         reportsFrame = new JFrame();
-
         reportsFrame.setTitle("Reports Form");
-
         dayStartReports = new JComboBox(daysStart);
         monthStartReports = new JComboBox(monthsStart);
         yearStartReports = new JComboBox(yearsStart);

@@ -10,6 +10,8 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * TEXT HERE...
@@ -25,12 +27,17 @@ public class CostManagerView implements IView {
     private MainMenuFrame m_MainMenuFrame;
     private AddNewCostFrame m_AddNewCostFrame;
     private ReportsFrame m_ReportsFrame;
+    private ExecutorService service;
+
+    public CostManagerView() {
+        this.service = Executors.newFixedThreadPool(5);
+    }
 
 
     // Set all panels and frames in login frame. (1st screen of gui)
     @Override
     public void start() {
-        this.m_LoginFrame = new LoginFrame(viewModel);
+        this.m_LoginFrame = new LoginFrame(viewModel, this);
 
     }
 
@@ -50,21 +57,36 @@ public class CostManagerView implements IView {
     @Override
     public void LoginSuccessfully(Account account) {
         this.m_LoginFrame.toDispose();
-        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account);
+        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
     }
 
     // This method start new frame of adding cost.
     @Override
     public void startAddNewCost(Account account) {
-        this.m_MainMenuFrame.toDispose();
-        this.m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            m_MainMenuFrame.toDispose();
+                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);;
+                        }
+                    });
+                }catch (Exception e) {
+
+                }
+            }
+        });
     }
 
     // This method return to the first screen in gui.
     @Override
     public void LogOutFromAccount() {
         this.m_MainMenuFrame.toDispose();
-        this.m_LoginFrame = new LoginFrame(viewModel);
+        this.m_LoginFrame = new LoginFrame(viewModel, this);
     }
 
     // This method alert when we added new cost to database.
@@ -72,7 +94,7 @@ public class CostManagerView implements IView {
     public void AddNewCostSuccessfully(Cost cost, Account account) {
         JOptionPane.showMessageDialog(null,"The expense was successfully added!", "Cost added", JOptionPane.PLAIN_MESSAGE);
         this.m_AddNewCostFrame.toDispose();
-        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account);
+        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
     }
 
     // This method alert if user or password have problem.
@@ -84,7 +106,25 @@ public class CostManagerView implements IView {
     // This method open the reports frame.
     @Override
     public void startReports(Account account) {
-        m_ReportsFrame = new ReportsFrame(viewModel, account);
+
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            m_ReportsFrame = new ReportsFrame(viewModel, account);;
+                        }
+                    });
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+
     }
 
     // This method show the reports on frame.
@@ -97,19 +137,34 @@ public class CostManagerView implements IView {
     @Override
     public void closeSignUpFrame() {
         m_RegisterFrame.toDispose();
-        m_LoginFrame = new LoginFrame(viewModel);
+        m_LoginFrame = new LoginFrame(viewModel, this);
     }
 
     // This method open signup frame.
     @Override
     public void openSignUpFrame() {
-        m_LoginFrame.toDispose();
-        m_RegisterFrame = new RegisterFrame(viewModel);
+
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            m_LoginFrame.toDispose();
+                            m_RegisterFrame = new RegisterFrame(viewModel);
+                        }
+                    });
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
         //CostManagerView costManagerView = new CostManagerView();
-
 
     }
 

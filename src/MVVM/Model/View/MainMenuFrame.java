@@ -23,14 +23,16 @@ public class MainMenuFrame {
     private IViewModel viewModel;
     private Account account;
     private JLabel labelHelloUser;
+    private IView view;
 
     private JPanel mainMenuPanelNorth;
     private JPanel mainMenuPanelCenter;
     private JPanel mainMenuPanelSouth;
 
-    public MainMenuFrame(IViewModel viewModel, Account account) {
+    public MainMenuFrame(IViewModel viewModel, Account account, IView view) {
         this.viewModel = viewModel;
         this.account = account;
+        this.view = view;
 
 
         mainFrame = new JFrame();
@@ -90,12 +92,11 @@ public class MainMenuFrame {
     }
 
     public void setButtonAddNewCostMain() {
-        viewModel.startNewCost(account);
+        view.startAddNewCost(account);
     }
 
     public void setButtonReportsMain() {
-        viewModel.goToReports(account);
-
+        view.startReports(account);
     }
 
     public void setButtonLogOutMain() {

@@ -169,48 +169,7 @@ public class CostManagerViewModel implements IViewModel {
             }
         });
     }
-
-    // This method switch between screens in the view. From Main Page --> Add New Cost Page.
-    @Override
-    public void startNewCost(Account account) {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.startAddNewCost(account);
-                        }
-                    });
-                }catch (Exception e) {
-
-                }
-            }
-        });
-    }
-
-    // This method switch between screens in the view. From Main Page --> Reports Page.
-    @Override
-    public void goToReports(Account account) {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.startReports(account);
-                        }
-                    });
-                }
-                catch (Exception e) {
-
-                }
-            }
-        });
-    }
-
+    
     // This method switch between screens in the view. From Signup Page --> Login Page.
     @Override
     public void finishSignUp() {
@@ -222,27 +181,6 @@ public class CostManagerViewModel implements IViewModel {
                         @Override
                         public void run() {
                             view.closeSignUpFrame();
-                        }
-                    });
-                }
-                catch (Exception e) {
-
-                }
-            }
-        });
-    }
-
-    // This method switch between screens in the view. From Login Page --> Signup Page
-    @Override
-    public void openSignUpPage() {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.openSignUpFrame();
                         }
                     });
                 }

@@ -1,9 +1,11 @@
 package MVVM.Model.View;
 
 import MVVM.Model.Account;
+import MVVM.Model.IView;
 import MVVM.Model.IViewModel;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 
 /**
@@ -22,15 +24,17 @@ public class LoginFrame {
     private JButton buttonLogin;
     private JButton buttonSignUp;
     private IViewModel viewModel;
+    private IView view;
 
 
     public void setViewModel(IViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
-    public LoginFrame(IViewModel viewModel) {
+    public LoginFrame(IViewModel viewModel, IView view) {
 
         this.viewModel = viewModel;
+        this.view = view;
 
         loginFrame = new JFrame();
 
@@ -78,7 +82,7 @@ public class LoginFrame {
     }
 
     public void setSignUpButton() {
-        viewModel.openSignUpPage();
+        view.openSignUpFrame();
     }
 
     public void toDispose() {
