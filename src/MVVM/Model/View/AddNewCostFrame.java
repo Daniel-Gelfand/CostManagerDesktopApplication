@@ -89,6 +89,7 @@ public class AddNewCostFrame {
         addNewCostFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addNewCostFrame.add(addNewCostPanel);
         addNewCostFrame.setSize(570, 370);
+
         addNewCostFrame.setLocationRelativeTo(null);
         addNewCostFrame.setVisible(true);
     }
