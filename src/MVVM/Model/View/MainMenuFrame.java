@@ -24,6 +24,10 @@ public class MainMenuFrame {
     private Account account;
     private JLabel labelHelloUser;
 
+    private JPanel mainMenuPanelNorth;
+    private JPanel mainMenuPanelCenter;
+    private JPanel mainMenuPanelSouth;
+
     public MainMenuFrame(IViewModel viewModel, Account account) {
         this.viewModel = viewModel;
         this.account = account;
@@ -32,38 +36,58 @@ public class MainMenuFrame {
         mainFrame = new JFrame();
         mainFrame.setTitle("Main Form");
         mainFrame.setLayout(new BorderLayout());
-        mainPanel = new JPanel();
-        mainPanel.setBackground(new Color(45,85,255));
-        mainFrame.getContentPane();
+
         buttonAddNewCostMain = new JButton("Add New Cost");
         buttonReportsMain = new JButton("Reports");
         buttonLogOutMain = new JButton("Logout");
         labelHelloUser = new JLabel("Hello " + account.getUsername() + "!");
-        labelHelloUser.setBounds(2,2,150,40);
-        labelHelloUser.setFont(new Font("", Font.BOLD, 14));
+
+        //labelHelloUser.setLabelFor(buttonAddNewCostMain);
+        //labelHelloUser.setFont(new Font("", Font.BOLD, 14));
+
         buttonAddNewCostMain.setBackground(new Color(183,244,216));
         buttonReportsMain.setBackground(new Color(254,250,212));
         buttonLogOutMain.setBackground(new Color(241,90,34));
 
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
 
+        mainMenuPanelNorth = new JPanel();
+        mainMenuPanelCenter = new JPanel();
+        mainMenuPanelSouth = new JPanel();
+        mainMenuPanelNorth.setPreferredSize(new Dimension(100,100));
+        mainMenuPanelCenter.setPreferredSize(new Dimension(100,100));
+        mainMenuPanelSouth.setPreferredSize(new Dimension(100,100));
+        mainMenuPanelNorth.setBackground(new Color(45,85,255));
+        mainMenuPanelCenter.setBackground(new Color(45,85,255));
+        mainMenuPanelSouth.setBackground(new Color(45,85,255));
+
+
         mainFrame.setIconImage(icon);
         buttonAddNewCostMain.addActionListener(e -> setButtonAddNewCostMain());
         buttonReportsMain.addActionListener(e -> setButtonReportsMain());
         buttonLogOutMain.addActionListener(e -> setButtonLogOutMain());
-        mainPanel.setLayout(new GridLayout(3,1));
-        mainPanel.add(labelHelloUser);
-        mainPanel.add(buttonAddNewCostMain);
-        mainPanel.add(buttonReportsMain);
-        mainPanel.add(buttonLogOutMain);
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+
+        mainMenuPanelNorth.add(labelHelloUser);
+        mainMenuPanelNorth.add(buttonAddNewCostMain);
+        mainMenuPanelCenter.add(buttonReportsMain);
+        mainMenuPanelSouth.add(buttonLogOutMain);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.add(mainPanel);
+        mainFrame.add(mainMenuPanelNorth);
+        mainFrame.add(mainMenuPanelCenter);
+        mainFrame.add(mainMenuPanelSouth);
         mainFrame.setSize(300, 350);
+        mainFrame.setLayout(new BorderLayout());
+        mainFrame.add(mainMenuPanelNorth,BorderLayout.NORTH);
+        mainFrame.add(mainMenuPanelCenter,BorderLayout.CENTER);
+        mainFrame.add(mainMenuPanelSouth,BorderLayout.SOUTH);
+
+        mainMenuPanelNorth.setLayout(new FlowLayout());
+        mainMenuPanelCenter.setLayout(new FlowLayout());
+        mainMenuPanelSouth.setLayout(new FlowLayout());
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
     }
-
 
     public void setButtonAddNewCostMain() {
         viewModel.startNewCost(account);
