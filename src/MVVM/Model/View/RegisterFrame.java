@@ -1,6 +1,7 @@
 package MVVM.Model.View;
 
 import MVVM.Model.Account;
+import MVVM.Model.IView;
 import MVVM.Model.IViewModel;
 import MVVM.Model.View.LoginFrame;
 
@@ -24,13 +25,12 @@ public class RegisterFrame{
     private JButton buttonCreateRegister;
     private JButton buttonCancelRegister;
     private IViewModel viewModel;
+    private IView view;
 
-    public void setViewModel(IViewModel viewModel) {
-        this.viewModel = viewModel;
-    }
 
-    public RegisterFrame(IViewModel viewModel) {
+    public RegisterFrame(IViewModel viewModel, IView view) {
         this.viewModel = viewModel;
+        this.view = view;
 
         registerFrame = new JFrame();
         labelUserNameRegister = new JLabel("Username: ");
@@ -87,7 +87,7 @@ public class RegisterFrame{
 
     public void setButtonCancelRegister()
     {
-        viewModel.finishSignUp();
+        view.closeSignUpFrame();
     }
 
     public void toDispose() {

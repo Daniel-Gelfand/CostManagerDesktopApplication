@@ -1,9 +1,6 @@
 package MVVM.Model.View;
 
-import MVVM.Model.Account;
-import MVVM.Model.Cost;
-import MVVM.Model.IView;
-import MVVM.Model.IViewModel;
+import MVVM.Model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +69,7 @@ public class CostManagerView implements IView {
                         @Override
                         public void run() {
                             m_MainMenuFrame.toDispose();
-                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);;
+                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);
                         }
                     });
                 }catch (Exception e) {
@@ -143,22 +140,22 @@ public class CostManagerView implements IView {
     // This method open signup frame.
     @Override
     public void openSignUpFrame() {
+        m_LoginFrame.toDispose();
+        m_RegisterFrame = new RegisterFrame(viewModel, this);
 
+    }
+
+    @Override
+    public void logout() {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            m_LoginFrame.toDispose();
-                            m_RegisterFrame = new RegisterFrame(viewModel);
-                        }
-                    });
-                }
-                catch (Exception e) {
-
-                }
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        LogOutFromAccount();
+                    }
+                });
             }
         });
     }
