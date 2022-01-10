@@ -51,8 +51,7 @@ public class CostManagerViewModel implements IViewModel {
                             view.closeSignUpFrame();
                         }
                     });
-                }
-                catch (CostManagerExceptions e) {
+                } catch (CostManagerExceptions e) {
                     view.showUsernameIsTaken();
                 }
             }
@@ -73,8 +72,7 @@ public class CostManagerViewModel implements IViewModel {
                                 view.LoginSuccessfully(account);
                             }
                         });
-                    }
-                    else {
+                    } else {
                         SwingUtilities.invokeLater(new Runnable() {
                             @Override
                             public void run() {
@@ -82,8 +80,7 @@ public class CostManagerViewModel implements IViewModel {
                             }
                         });
                     }
-                }
-                catch (CostManagerExceptions e) {
+                } catch (CostManagerExceptions e) {
 
                 }
             }
@@ -105,8 +102,7 @@ public class CostManagerViewModel implements IViewModel {
                         }
                     });
 
-                }
-                catch (CostManagerExceptions e) {
+                } catch (CostManagerExceptions e) {
                     System.out.println("Cant login to account");
                 }
             }
@@ -127,33 +123,14 @@ public class CostManagerViewModel implements IViewModel {
                             view.showReports(resultSet);
                         }
                     });
-                }
-                catch (CostManagerExceptions e) {
+                } catch (CostManagerExceptions e) {
 
                 }
             }
         });
 
-    }
-
-    // This method switch between screens in the view. From Signup Page --> Login Page.
-    @Override
-    public void finishSignUp() {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.closeSignUpFrame();
-                        }
-                    });
-                }
-                catch (Exception e) {
-
-                }
-            }
-        });
     }
 }
+
+    // This method switch between screens in the view. From Signup Page --> Login Page.
+
