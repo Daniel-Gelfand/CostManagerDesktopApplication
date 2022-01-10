@@ -90,18 +90,6 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 
-    // This method not in use yet.
-    @Override
-    public void addCategory(Category category) {
-
-    }
-
-    // This method not in use yet.
-    @Override
-    public void getCategories() {
-
-    }
-
     // This method turn to the  model and adding new cost the appropriate database.
     @Override
     public void addNewCost(Cost cost, Account account) {
@@ -148,28 +136,6 @@ public class CostManagerViewModel implements IViewModel {
 
     }
 
-    // This method turn to the model and logout and turn the user to the main page.
-    @Override
-    public void logout() {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    model.logout();
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.LogOutFromAccount();
-                        }
-                    });
-
-                }catch (CostManagerExceptions e) {
-
-                }
-            }
-        });
-    }
-    
     // This method switch between screens in the view. From Signup Page --> Login Page.
     @Override
     public void finishSignUp() {

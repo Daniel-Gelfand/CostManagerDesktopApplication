@@ -47,4 +47,6 @@ public interface IView {
 
     // This method open signup frame.
     public void openSignUpFrame();
+
+    public void logout();
 }

@@ -18,7 +18,6 @@ public class MainMenuFrame {
     private JButton buttonAddNewCostMain;
     private JButton buttonReportsMain;
     private JButton buttonLogOutMain;
-    private JPanel mainPanel;
     private JFrame mainFrame;
     private IViewModel viewModel;
     private Account account;
@@ -100,7 +99,7 @@ public class MainMenuFrame {
     }
 
     public void setButtonLogOutMain() {
-        viewModel.logout();
+        view.logout();
     }
 
     public void toDispose() {
