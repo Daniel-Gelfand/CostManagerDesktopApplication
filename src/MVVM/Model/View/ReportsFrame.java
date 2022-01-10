@@ -24,14 +24,14 @@ public class ReportsFrame {
 
     private JFrame reportsFrame;
     private JPanel reportsPanel;
-    private String [] daysStart = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private String [] monthsStart = {"0","1","2","3","4","5","6","7","8","9","10","11","12"};
+    private String [] daysStart = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+    private String [] monthsStart = {"1","2","3","4","5","6","7","8","9","10","11","12"};
     private String [] yearsStart = {"2019","2020","2021","2022"};
     private JComboBox dayStartReports;
     private JComboBox monthStartReports;
     private JComboBox yearStartReports;
-    private String [] daysEnd = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private String [] monthsEnd = {"0","1","2","3","4","5","6","7","8","9","10","11","12"};
+    private String [] daysEnd = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+    private String [] monthsEnd = {"1","2","3","4","5","6","7","8","9","10","11","12"};
     private String [] yearsEnd = {"2019","2020","2021","2022"};
     private JComboBox dayEndReports;
     private JComboBox monthEndReports;
@@ -184,6 +184,7 @@ public class ReportsFrame {
         reportsFrame.setLayout(new BorderLayout());
 
         DefaultTableModel model = new DefaultTableModel(data,columns);
+        buttonSendToGetReport.setBackground(new Color(183,244,216));
 
         tableReports = new JTable(model);
         tableReports.setShowGrid(true);
