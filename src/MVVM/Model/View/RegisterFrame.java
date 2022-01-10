@@ -18,11 +18,9 @@ public class RegisterFrame{
     private JPanel registerPanel;
     private JLabel labelUserNameRegister;
     private JLabel labelPasswordRegister;
-    private JLabel labelEmailRegister;
     private JLabel labelAgreeTermsRegister;
     private JTextField textFieldUserNameRegister;
     private JTextField textFieldPasswordRegister;
-    private JTextField textFieldEmailRegister;
     private JButton buttonCreateRegister;
     private JButton buttonCancelRegister;
     private IViewModel viewModel;
@@ -39,9 +37,6 @@ public class RegisterFrame{
         textFieldUserNameRegister = new JTextField(15);
         labelPasswordRegister = new JLabel("Password: ");
         textFieldPasswordRegister = new JPasswordField(15);
-        labelEmailRegister = new JLabel("Email:        ");
-        labelEmailRegister.setBounds(50,270,100,30);
-        textFieldEmailRegister = new JTextField(15);
         buttonCancelRegister = new JButton("Cancel");
         buttonCancelRegister.addActionListener(e -> setButtonCancelRegister());
         buttonCreateRegister = new JButton("Create");
@@ -63,8 +58,6 @@ public class RegisterFrame{
         registerPanel.setLayout(new FlowLayout());
         registerPanel.add(labelUserNameRegister);
         registerPanel.add(textFieldUserNameRegister);
-        registerPanel.add(labelEmailRegister);
-        registerPanel.add(textFieldEmailRegister);
         registerPanel.add(labelPasswordRegister);
         registerPanel.add(textFieldPasswordRegister);
         registerPanel.add(buttonCreateRegister);
@@ -81,7 +74,7 @@ public class RegisterFrame{
 
     public void setButtonCreateRegister() {
 
-        String email = textFieldEmailRegister.getText();
+        //String email = textFieldEmailRegister.getText();
         String username = textFieldUserNameRegister.getText();
         String password = textFieldPasswordRegister.getText();
 
