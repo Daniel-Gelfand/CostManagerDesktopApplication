@@ -49,4 +49,8 @@ public interface IView {
     public void openSignUpFrame();
 
     public void logout();
+
+    public void addNewCostFailed();
+
+    public void getReportFailed();
 }

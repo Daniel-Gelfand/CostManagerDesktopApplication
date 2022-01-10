@@ -81,7 +81,7 @@ public class CostManagerViewModel implements IViewModel {
                         });
                     }
                 } catch (CostManagerExceptions e) {
-
+                    view.UserDoesNotExist();
                 }
             }
         });
@@ -103,7 +103,7 @@ public class CostManagerViewModel implements IViewModel {
                     });
 
                 } catch (CostManagerExceptions e) {
-                    System.out.println("Cant login to account");
+                    view.getReportFailed();
                 }
             }
         });
@@ -124,7 +124,7 @@ public class CostManagerViewModel implements IViewModel {
                         }
                     });
                 } catch (CostManagerExceptions e) {
-
+                    view.getReportFailed();
                 }
             }
         });

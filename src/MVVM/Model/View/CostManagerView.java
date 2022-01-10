@@ -160,6 +160,36 @@ public class CostManagerView implements IView {
         });
     }
 
+    @Override
+    public void addNewCostFailed() {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(null,"Add new cost failed", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void getReportFailed() {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(null,"Get report failed", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+                    }
+                });
+            }
+        });
+    }
+
     public static void main(String[] args) {
         //CostManagerView costManagerView = new CostManagerView();
 

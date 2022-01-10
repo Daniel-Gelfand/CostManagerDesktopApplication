@@ -78,7 +78,17 @@ public class LoginFrame {
         String password = textFieldPassword.getText();
         Account account = new Account(username, password);
 
-        viewModel.loginToAccount(account);
+        if (username.length() < 4)
+        {
+            JOptionPane.showMessageDialog(null,"The username must be 5 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (password.length() < 4)
+        {
+            JOptionPane.showMessageDialog(null,"The password  must be 5 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+        }else
+        {
+            viewModel.loginToAccount(account);
+        }
     }
 
     public void setSignUpButton() {

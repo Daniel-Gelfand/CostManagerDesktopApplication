@@ -27,22 +27,33 @@ public class CostManagerDBModel implements IModel {
 
     // This Ctor connect to database Sql server.
     public CostManagerDBModel() throws CostManagerExceptions {
+
+        Connection costManagerConnection = null;
+
         try {
-            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
         } catch (Exception e)
         {
             throw new CostManagerExceptions("Problem With Connect To DataBase {PHPAdmin}");
         }
+        finally {
+            try {
+                costManagerConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // This method set new account in database.
     @Override
     public void setupNewAccount(Account account) throws CostManagerExceptions {
+        Connection costManagerConnection = null;
 
         try {
-            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
             String query = "insert into accounts_db" + "(usernames,passwords)"
@@ -53,20 +64,27 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.setString(1, account.getUsername());
             preparedStmt.setString(2, account.getPassword());
             preparedStmt.execute();
-            costManagerConnection.close();
 
         } catch (SQLException e) {
             throw  new CostManagerExceptions("Problem With Insert New Account To DataBase!",e);
+        }
+        finally {
+            try {
+                costManagerConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     // This method search account in database and returns true or false in accordance.
     @Override
     public boolean loginToAccount(Account account) throws CostManagerExceptions {
+        Connection costManagerConnection = null;
         boolean isRegistered = false;
         ResultSet resultSet = null;
         try {
-            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
             if (account.getUsername() != null && account.getPassword() != null) {
@@ -82,12 +100,17 @@ public class CostManagerDBModel implements IModel {
                     isRegistered = false;
                 }
             }
-            costManagerConnection.close(); // Here?
-            statement.close(); // Here?
         }
         catch (SQLException e)
         {
             throw new CostManagerExceptions("Problem To Login Account in Database!",e);
+        }
+        finally {
+            try {
+                costManagerConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return isRegistered;
     }
@@ -107,9 +130,9 @@ public class CostManagerDBModel implements IModel {
     // This method add new cost to the database.
     @Override
     public void addNewCost(Cost cost) throws CostManagerExceptions{
-
+        Connection costManagerConnection = null;
         try {
-            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
             String query = "insert into main_db" + "(usernames,categories,description,cost,currency,date)"
@@ -123,20 +146,25 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.setString(5, cost.getCurrency());
             preparedStmt.setDate(6, cost.getDate());
             preparedStmt.execute();
-            costManagerConnection.close(); // Here?
-            statement.close(); // Here?
-
         } catch (SQLException e) {
             throw new CostManagerExceptions("Problem With add Cost To Database!",e);
         }
-
+        finally {
+            try {
+                costManagerConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // This method returns reports about costs by selected dates.
     @Override
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
+        Connection costManagerConnection = null;
+
         try {
-            Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+            costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             ResultSet resultSet;
             LinkedList<Cost> costs = new LinkedList<>();
@@ -150,14 +178,19 @@ public class CostManagerDBModel implements IModel {
 
                 costs.add(cost);
             }
-            costManagerConnection.close(); // Here?
-            statement.close(); // Here?
 
             return costs;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new CostManagerExceptions("Problem with get report", e);
         }
-
+        finally {
+            try {
+                costManagerConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

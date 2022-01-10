@@ -95,24 +95,53 @@ public class AddNewCostFrame {
     }
 
     public void setAddNewCostButton() {
-        String username = account.getUsername();
-        String description = textDescriptionsCostAddNewCost.getText();
-        String currency = convertCurrencyToString(this.currency.getSelectedIndex());
-        String category = textFieldCategoryAddNewCost.getText();
-        double amount = Double.parseDouble(textFieldCostAddNewCost.getText());
-        Date date = new Date(yearsCost.getSelectedIndex() + 119, monthCost.getSelectedIndex() - 1, daysCost.getSelectedIndex());
 
-        Cost cost = new Cost(username, category, description, amount, currency , date);
-        System.out.println("Matan");
-        System.out.println(category);
-        System.out.println(date.toString());
-        System.out.println("month:" + monthCost.getSelectedIndex());
-        System.out.println("day:" + daysCost.getSelectedIndex() );
-        System.out.println(amount);
-        System.out.println(yearsCost.getSelectedIndex());
-        System.out.println(currency);
-        viewModel.addNewCost(cost, account);
-        //addNewCostFrame.dispose();
+
+        if (CheckIfCategoryIsNotNull() && checkIfAmountIsValid())
+        {
+            String username = account.getUsername();
+            String description = textDescriptionsCostAddNewCost.getText();
+            String currency = convertCurrencyToString(this.currency.getSelectedIndex());
+            String category = textFieldCategoryAddNewCost.getText();
+            double amount = Double.parseDouble(textFieldCostAddNewCost.getText());
+            Date date = new Date(yearsCost.getSelectedIndex() + 119, monthCost.getSelectedIndex() - 1, daysCost.getSelectedIndex());
+
+            Cost cost = new Cost(username, category, description, amount, currency , date);
+            viewModel.addNewCost(cost, account);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"One or more of the fields weren't filled properly!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public boolean CheckIfCategoryIsNotNull()
+    {
+        boolean isValidCost = true;
+
+        if (textFieldCostAddNewCost.getText().length() < 1)
+        {
+            isValidCost = false;
+        }
+
+        return isValidCost;
+    }
+
+    public boolean checkIfAmountIsValid()
+    {
+        boolean isValidCost = true;
+        String text = textFieldCostAddNewCost.getText();
+
+        for (int i = 0; i < text.length(); i++) {
+
+            if (!Character.isDigit(text.charAt(i)))
+            {
+                isValidCost = false;
+                break;
+            }
+        }
+
+        return isValidCost;
     }
 
     public String convertCurrencyToString(int index) {

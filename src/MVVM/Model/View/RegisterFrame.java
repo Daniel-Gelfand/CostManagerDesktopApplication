@@ -35,10 +35,15 @@ public class RegisterFrame{
         registerFrame = new JFrame();
         labelUserNameRegister = new JLabel("Username: ");
         textFieldUserNameRegister = new JTextField(15);
+        textFieldUserNameRegister.setToolTipText("Minimum 5 Characters!");
+
         labelPasswordRegister = new JLabel("Password: ");
         textFieldPasswordRegister = new JPasswordField(15);
+        textFieldPasswordRegister.setToolTipText("Minimum 5 Characters!");
+
         buttonCancelRegister = new JButton("Cancel");
         buttonCancelRegister.addActionListener(e -> setButtonCancelRegister());
+
         buttonCreateRegister = new JButton("Create");
         buttonCreateRegister.addActionListener(e -> setButtonCreateRegister());
         labelAgreeTermsRegister = new JLabel("By Clicking 'Create', I Agree with Terms & Policy");
@@ -50,8 +55,6 @@ public class RegisterFrame{
         registerFrame.setIconImage(icon);
         buttonCreateRegister.setBackground(new Color(183,244,216));
         buttonCancelRegister.setBackground(new Color(241,90,34));
-
-
 
         registerFrame.setTitle("Register Form");
         registerPanel.setBackground(new Color(45,85,255));
@@ -81,8 +84,18 @@ public class RegisterFrame{
         Account newAccount = new Account(username, password);
 
         System.out.println("Account : " + newAccount.getUsername() + ", " + newAccount.getPassword());
-        viewModel.setupNewAccount(newAccount);
 
+        if (username.length() < 4)
+        {
+            JOptionPane.showMessageDialog(null,"The username must contains 5 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (password.length() < 4)
+        {
+            JOptionPane.showMessageDialog(null,"The password must contains 5 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+        }else
+        {
+            viewModel.setupNewAccount(newAccount);
+        }
     }
 
     public void setButtonCancelRegister()
