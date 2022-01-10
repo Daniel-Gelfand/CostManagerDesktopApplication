@@ -86,7 +86,7 @@ public class AddNewCostFrame {
         addNewCostPanel.add(buttonAddNewCost);
         addNewCostFrame.setLayout(new BorderLayout());
         addNewCostPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        addNewCostFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addNewCostFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         addNewCostFrame.add(addNewCostPanel);
         addNewCostFrame.setSize(570, 370);
 

@@ -68,7 +68,6 @@ public class CostManagerView implements IView {
 
                         @Override
                         public void run() {
-                            m_MainMenuFrame.toDispose();
                             m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);
                         }
                     });

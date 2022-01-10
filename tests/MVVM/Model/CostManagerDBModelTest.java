@@ -19,7 +19,7 @@ class CostManagerDBModelTest {
         account = new Account("unittest","123456");
         costManagerDBModel = new CostManagerDBModel();
         cost = new Cost("unittest","TEST","juniTESTv2AfterCMExceptions",999.99,"TEST",date);
-        category = new Category("TEST");
+        category = new Category("TEST1");
     }
 
     @org.junit.jupiter.api.AfterEach
@@ -41,8 +41,8 @@ class CostManagerDBModelTest {
     }
 
     @org.junit.jupiter.api.Test
-    void addCategory() {
-        categories.add(category);
+    void addCategory() throws CostManagerExceptions {
+        costManagerDBModel.addCategory(category);
     }
 
     @org.junit.jupiter.api.Test
