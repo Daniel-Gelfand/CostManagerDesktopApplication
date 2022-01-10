@@ -76,7 +76,7 @@ public class LoginFrame {
     public void setLoginButton() {
         String username = textFieldUserName.getText();
         String password = textFieldPassword.getText();
-        Account account = new Account(username, password, "Matan", "Bar", "aaa");
+        Account account = new Account(username, password);
 
         viewModel.loginToAccount(account);
     }

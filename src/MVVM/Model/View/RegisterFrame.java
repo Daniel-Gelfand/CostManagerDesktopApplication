@@ -85,7 +85,7 @@ public class RegisterFrame{
         String username = textFieldUserNameRegister.getText();
         String password = textFieldPasswordRegister.getText();
 
-        Account newAccount = new Account(username, password, "Matan", "Bar", email);
+        Account newAccount = new Account(username, password);
 
         System.out.println("Account : " + newAccount.getUsername() + ", " + newAccount.getPassword());
         viewModel.setupNewAccount(newAccount);

@@ -45,16 +45,13 @@ public class CostManagerDBModel implements IModel {
             Connection costManagerConnection = DriverManager.getConnection(url, username, password);
             Statement statement = costManagerConnection.createStatement();
             System.out.println("Connected To DB!");
-            String query = "insert into accounts_db" + "(usernames,passwords,emails,first_name,last_name)"
-                    + "values (?,?,?,?,?)";
+            String query = "insert into accounts_db" + "(usernames,passwords)"
+                    + "values (?,?)";
 
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
             System.out.println("Inserted To DB!");
             preparedStmt.setString(1, account.getUsername());
             preparedStmt.setString(2, account.getPassword());
-            preparedStmt.setString(3, account.getEmail());
-            preparedStmt.setString(4, account.getFirstName());
-            preparedStmt.setString(5, account.getLastName());
             preparedStmt.execute();
             costManagerConnection.close();
 
