@@ -22,7 +22,7 @@ public class CostManagerViewModel implements IViewModel {
     private ExecutorService service;
 
     public CostManagerViewModel() {
-        this.service = Executors.newFixedThreadPool(5);
+        this.service = Executors.newFixedThreadPool(6);
     }
 
     @Override
@@ -141,6 +141,27 @@ public class CostManagerViewModel implements IViewModel {
                         @Override
                         public void run() {
                             view.CloseAddNewCategory();
+                        }
+                    });
+                } catch (CostManagerExceptions e) {
+                    view.showErrorMessage(e.getMessage());
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public void addNewCost(Account account) {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    LinkedList<Category> resultSet = model.getCategories();
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.startAddNewCost(account, resultSet);
                         }
                     });
                 } catch (CostManagerExceptions e) {

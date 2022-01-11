@@ -86,11 +86,6 @@ public class ReportsFrame {
         reportsFrame.setIconImage(icon);
         buttonSendToGetReport.setBackground(new Color(183,244,216));
 
-
-
-
-
-
         reportsPanel.setPreferredSize(new Dimension(100,100));
         reportsPanelNorth.setPreferredSize(new Dimension(100,100));
         reportsPanelSouth.setPreferredSize(new Dimension(100,100));
@@ -127,8 +122,6 @@ public class ReportsFrame {
 
     public void setReportsButton()
     {
-        System.out.println(yearStartReports.getSelectedItem() + "-" + monthStartReports.getSelectedItem() + "-" + dayStartReports.getSelectedItem());
-        System.out.println(yearEndReports.getSelectedItem() + "-" + monthEndReports.getSelectedItem() + "-" + dayEndReports.getSelectedItem());
         Date start = Date.valueOf(yearStartReports.getSelectedItem() + "-" + monthStartReports.getSelectedItem() + "-" + dayStartReports.getSelectedItem());
         Date end = Date.valueOf(yearEndReports.getSelectedItem() + "-" + monthEndReports.getSelectedItem() + "-" + dayEndReports.getSelectedItem());
         System.out.println("start" + start);

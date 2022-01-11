@@ -112,7 +112,7 @@ public class MainMenuFrame {
      * this method open add new cost screen
      */
     public void setButtonAddNewCostMain() {
-        view.startAddNewCost(account);
+        viewModel.addNewCost(account);
     }
 
     /**

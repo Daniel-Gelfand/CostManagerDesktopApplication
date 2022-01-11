@@ -140,10 +140,10 @@ public class CostManagerDBModel implements IModel {
             }
         }
     }
-
+    //Categories_db" + "(Category)" + "values (?)";
     // This method not in use yet.
     @Override
-    public List<Category> getCategories() throws CostManagerExceptions {
+    public LinkedList<Category> getCategories() throws CostManagerExceptions {
         Connection costManagerConnection = null;
 
         try {
@@ -151,19 +151,19 @@ public class CostManagerDBModel implements IModel {
             Statement statement = costManagerConnection.createStatement();
             ResultSet resultSet;
             LinkedList<Category> categories = new LinkedList<>();
-
             System.out.println("Connected To DB!");
-            String query = "insert into Categories_db" + "(Category)" + "values (?)";
-            resultSet = statement.executeQuery(query);
+            String sql = "select * from Categories_db";
+            resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Category category = new Category(resultSet.getString("Category"));
+
                 categories.add(category);
             }
 
             return categories;
         }
         catch (SQLException e) {
-            throw new CostManagerExceptions("Problem with get categories", e);
+            throw new CostManagerExceptions("Problem with get report", e);
         }
         finally {
             try {
@@ -237,5 +237,22 @@ public class CostManagerDBModel implements IModel {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        Account account = new Account("matan", "1234");
+        try {
+            CostManagerDBModel costManagerDBModel = new CostManagerDBModel();
+            LinkedList<Category> categories = costManagerDBModel.getCategories();
+            int index = 1;
+            for (Category category: categories) {
+                System.out.println(index++ + "." + "" + category.getCategory());
+            }
+            System.out.println();
+        } catch (CostManagerExceptions e) {
+            e.printStackTrace();
+        }
+
     }
 }

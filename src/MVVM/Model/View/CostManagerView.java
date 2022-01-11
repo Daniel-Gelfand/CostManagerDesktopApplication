@@ -52,7 +52,7 @@ public class CostManagerView implements IView {
 
     // This method start new frame of adding cost.
     @Override
-    public void startAddNewCost(Account account) {
+    public void startAddNewCost(Account account, LinkedList<Category> categories) {
         service.submit(new Runnable() {
             @Override
             public void run() {
@@ -61,7 +61,7 @@ public class CostManagerView implements IView {
 
                         @Override
                         public void run() {
-                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account);
+                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account, categories);
                         }
                     });
                 }catch (Exception e) {
@@ -74,8 +74,7 @@ public class CostManagerView implements IView {
     // This method return to the first screen in gui.
     @Override
     public void LogOutFromAccount() {
-        this.m_MainMenuFrame.toDispose();  // צריך לשים לב אם רוצים לכבות את כל התפריטים ברגע שמתנתקים
-        //m_frameAddNewCategory.toDispose();
+        this.m_MainMenuFrame.toDispose();
         this.m_LoginFrame = new LoginFrame(viewModel, this);
     }
 
@@ -84,7 +83,7 @@ public class CostManagerView implements IView {
     public void AddNewCostSuccessfully(Cost cost, Account account) {
         JOptionPane.showMessageDialog(null,"The expense was successfully added!", "Cost added", JOptionPane.PLAIN_MESSAGE);
         this.m_AddNewCostFrame.toDispose();
-        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
+        //this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
     }
 
     // This method alert if user or password have problem.
@@ -163,6 +162,11 @@ public class CostManagerView implements IView {
     }
 
     @Override
+    public void showCategories(LinkedList<Category> categories) {
+        m_AddNewCostFrame.setCategoriesArray(categories);
+    }
+
+    @Override
     public void showErrorMessage(String message) {
         service.submit(new Runnable() {
             @Override
@@ -177,5 +181,6 @@ public class CostManagerView implements IView {
         });
 
     }
+
 
 }

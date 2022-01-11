@@ -21,7 +21,7 @@ public interface IView {
     public void LoginSuccessfully(Account account);
 
     // This method start new frame of adding cost.
-    public void startAddNewCost(Account account);
+    public void startAddNewCost(Account account, LinkedList<Category> categories);
 
     // This method return to the first screen in gui.
     public void LogOutFromAccount();
@@ -37,6 +37,8 @@ public interface IView {
 
     // This method show the reports on frame.
     public void showReports(LinkedList<Cost> costs);
+
+    public void showCategories(LinkedList<Category> categories);
 
     // This method close the frame of signup
     public void closeSignUpFrame();

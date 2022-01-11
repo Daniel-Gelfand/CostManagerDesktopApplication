@@ -31,4 +31,5 @@ public interface IViewModel {
 
     public void addNewCategory(Category category);
 
+    public void addNewCost(Account account);
 }
