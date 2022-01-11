@@ -8,27 +8,76 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This interface implements the model in architecture MVVM.
- *
+ * 'IModel':
+ * This interface implements the model in MVVM architecture.
+ * Methods:
+ * (1) setupNewAccount(Account account),
+ * (2) loginToAccount(Account account),
+ * (3) addCategory(Category category, Account account),
+ * (4) getCategories(Account account),
+ * (5) addNewCost(Cost cost),
+ * (6) getReport(Account account, Date start, Date end).
  */
 
 public interface IModel {
 
-    // This method sets up new account in the system.
+
+
+    /**
+     * 'setupNewAccount this method sets up new account in the system.
+     * @param account username
+     * @throws CostManagerExceptions
+     */
     public void setupNewAccount(Account account) throws CostManagerExceptions;
 
-    // This method check if account is registered in the system.
+
+
+    /**
+     * 'loginToAccount' is a method check if account is registered in the system.
+     * @param account username
+     * @return true/false
+     * @throws CostManagerExceptions
+     */
     public boolean loginToAccount(Account account) throws CostManagerExceptions;
 
-    // This method not in use right now (Not part of requirements)
+
+
+    /**
+     * 'addCategory' is a  method that adding new category to the system
+     * @param category category
+     * @param account username
+     * @throws CostManagerExceptions
+     */
     public void addCategory(Category category, Account account) throws CostManagerExceptions;
 
-    // This method not in use right now (Not part of requirements)
+
+
+    /**
+     * 'getCategories' is a method that gets all categories to specific account.
+     * @param account username
+     * @return list of categories
+     * @throws CostManagerExceptions
+     */
     public LinkedList<Category> getCategories(Account account) throws CostManagerExceptions;
 
-    // This method add new cost to specific account on database.
+
+
+    /**
+     * 'addNewCost' is a method add new cost to specific account on database.
+     * @param cost cost details
+     * @throws CostManagerExceptions
+     */
     public void addNewCost(Cost cost) throws CostManagerExceptions;
 
-    // This method return details about some costs by selected dates.
+
+
+    /**
+     * 'getReport' is a method that give a report of all costs to specific account filtering by date.
+     * @param account username
+     * @param start from date
+     * @param end to date
+     * @return list of costs
+     * @throws CostManagerExceptions
+     */
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions;
 }
