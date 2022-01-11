@@ -4,7 +4,6 @@ import MVVM.Model.*;
 
 import javax.swing.*;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -52,7 +51,7 @@ public class CostManagerViewModel implements IViewModel {
                         }
                     });
                 } catch (CostManagerExceptions e) {
-                    view.showUsernameIsTaken();
+                    view.showErrorMessage(e.getMessage());
                 }
             }
         });
@@ -76,12 +75,12 @@ public class CostManagerViewModel implements IViewModel {
                         SwingUtilities.invokeLater(new Runnable() {
                             @Override
                             public void run() {
-                                view.UserDoesNotExist();
+                                view.UserDoesNotExist("User doesn't exist!");
                             }
                         });
                     }
                 } catch (CostManagerExceptions e) {
-                    view.UserDoesNotExist();
+                    view.showErrorMessage(e.getMessage());
                 }
             }
         });
@@ -103,7 +102,7 @@ public class CostManagerViewModel implements IViewModel {
                     });
 
                 } catch (CostManagerExceptions e) {
-                    view.getReportFailed();
+                    view.showErrorMessage(e.getMessage());
                 }
             }
         });
@@ -124,11 +123,31 @@ public class CostManagerViewModel implements IViewModel {
                         }
                     });
                 } catch (CostManagerExceptions e) {
-                    view.getReportFailed();
+                    view.showErrorMessage(e.getMessage());
                 }
             }
         });
 
+    }
+
+    @Override
+    public void addNewCategory(Category category) {
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    model.addCategory(category);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.CloseAddNewCategory();
+                        }
+                    });
+                } catch (CostManagerExceptions e) {
+                    view.showErrorMessage(e.getMessage());
+                }
+            }
+        });
     }
 }
 

@@ -77,7 +77,6 @@ public class RegisterFrame{
 
     public void setButtonCreateRegister() {
 
-        //String email = textFieldEmailRegister.getText();
         String username = textFieldUserNameRegister.getText();
         String password = textFieldPasswordRegister.getText();
 

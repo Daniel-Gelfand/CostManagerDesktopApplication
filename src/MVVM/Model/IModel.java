@@ -31,8 +31,4 @@ public interface IModel {
 
     // This method return details about some costs by selected dates.
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions;
-
-    // This method logout account from the system.
-    public void logout() throws CostManagerExceptions;
-
 }

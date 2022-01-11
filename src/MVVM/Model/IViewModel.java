@@ -29,4 +29,6 @@ public interface IViewModel {
     // This method return details about some costs by selected dates.
     public void getReport(Account account, Date start, Date end);
 
+    public void addNewCategory(Category category);
+
 }

@@ -66,7 +66,7 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.execute();
 
         } catch (SQLException e) {
-            throw  new CostManagerExceptions("Problem With Insert New Account To DataBase!",e);
+            throw  new CostManagerExceptions("The username already exist", e);
         }
         finally {
             try {
@@ -103,7 +103,7 @@ public class CostManagerDBModel implements IModel {
         }
         catch (SQLException e)
         {
-            throw new CostManagerExceptions("Problem To Login Account in Database!",e);
+            throw new CostManagerExceptions("The username or password are wrong! please try again.",e);
         }
         finally {
             try {
@@ -130,7 +130,7 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.setString(1, category.getCategory());
             preparedStmt.execute();
         } catch (SQLException e) {
-            throw new CostManagerExceptions("Problem With add Cost To Database!",e);
+            throw new CostManagerExceptions("The category already exist!",e);
         }
         finally {
             try {
@@ -163,7 +163,7 @@ public class CostManagerDBModel implements IModel {
             return categories;
         }
         catch (SQLException e) {
-            throw new CostManagerExceptions("Problem with get report", e);
+            throw new CostManagerExceptions("Problem with get categories", e);
         }
         finally {
             try {
@@ -194,7 +194,7 @@ public class CostManagerDBModel implements IModel {
             preparedStmt.setDate(6, cost.getDate());
             preparedStmt.execute();
         } catch (SQLException e) {
-            throw new CostManagerExceptions("Problem With add Cost To Database!",e);
+            throw new CostManagerExceptions("Problem with add new cost!",e);
         }
         finally {
             try {
@@ -238,23 +238,4 @@ public class CostManagerDBModel implements IModel {
             }
         }
     }
-
-
-
-    // This method we need to delete. -------> Ask Michael Life. ViewManager?
-    @Override
-    public void logout() throws CostManagerExceptions {
-
-    }
-
-    private static void close(Connection myConn, Statement myStmt) throws SQLException {
-        if (myStmt != null) {
-            myStmt.close();
-        }
-
-        if (myConn != null) {
-            myConn.close();
-        }
-    }
-
 }

@@ -9,8 +9,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 /**
@@ -24,21 +22,18 @@ public class ReportsFrame {
 
     private JFrame reportsFrame;
     private JPanel reportsPanel;
-    private String [] daysStart = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private String [] monthsStart = {"1","2","3","4","5","6","7","8","9","10","11","12"};
-    private String [] yearsStart = {"2019","2020","2021","2022"};
     private JComboBox dayStartReports;
     private JComboBox monthStartReports;
     private JComboBox yearStartReports;
-    private String [] daysEnd = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private String [] monthsEnd = {"1","2","3","4","5","6","7","8","9","10","11","12"};
-    private String [] yearsEnd = {"2019","2020","2021","2022"};
+    private String [] daysArray = new String[32];
+    private String [] monthsArray = new String[13];
+    private String [] yearsArray = new String[10];
     private JComboBox dayEndReports;
     private JComboBox monthEndReports;
     private JComboBox yearEndReports;
     private JLabel labelFromDateReports;
     private JLabel labelToDateReports;
-    private JButton buttonSendToGetReport; ////////////////////////
+    private JButton buttonSendToGetReport;
     private JTable tableReports;
     private JPanel reportsPanelNorth;
     private JPanel reportsPanelSouth;
@@ -54,16 +49,20 @@ public class ReportsFrame {
         this.viewModel = viewModel;
         this.account = account;
 
+        setDaysArray();
+        setMonthArray();
+        setYearsArray();
+
         reportsFrame = new JFrame();
         reportsFrame.setTitle("Reports Form");
 
-        dayStartReports = new JComboBox(daysStart);
-        monthStartReports = new JComboBox(monthsStart);
-        yearStartReports = new JComboBox(yearsStart);
+        dayStartReports = new JComboBox(daysArray);
+        monthStartReports = new JComboBox(monthsArray);
+        yearStartReports = new JComboBox(yearsArray);
 
-        dayEndReports = new JComboBox(daysEnd);
-        monthEndReports = new JComboBox(monthsEnd);
-        yearEndReports = new JComboBox(yearsEnd);
+        dayEndReports = new JComboBox(daysArray);
+        monthEndReports = new JComboBox(monthsArray);
+        yearEndReports = new JComboBox(yearsArray);
         labelFromDateReports = new JLabel("From Date: ");
         labelToDateReports = new JLabel("To Date: ");
 
@@ -159,70 +158,46 @@ public class ReportsFrame {
             data[i][5] = date.toString();
             i++;
         }
-        reportsFrame.dispose();
         setTableByDates(data,columns , sumOfCosts);
     }
 
     public void setTableByDates(String[][] data, String[] columns , double sum) {
 
-        reportsFrame = new JFrame();
-        reportsFrame.setTitle("Reports Form");
-        dayStartReports = new JComboBox(daysStart);
-        monthStartReports = new JComboBox(monthsStart);
-        yearStartReports = new JComboBox(yearsStart);
-        dayEndReports = new JComboBox(daysEnd);
-        monthEndReports = new JComboBox(monthsEnd);
-        yearEndReports = new JComboBox(yearsEnd);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DefaultTableModel model = new DefaultTableModel(data,columns);
+                tableReports.setModel(model);
+                textFieldSumReports.setText(sum + "");
+            }
+        });
+    }
 
-        labelFromDateReports = new JLabel("From Date: ");
-        labelToDateReports = new JLabel("To Date: ");
-        buttonSendToGetReport = new JButton("Send To Get Report");
-        buttonSendToGetReport.addActionListener(e -> setReportsButton());
-        labelSumReports = new JLabel("Total sum in ILS: ");
-        textFieldSumReports = new JTextField(20);
-        textFieldSumReports.setText(sum + "");
-        reportsFrame.setLayout(new BorderLayout());
+    public void setMonthArray()
+    {
+        int month = 0;
 
-        DefaultTableModel model = new DefaultTableModel(data,columns);
-        buttonSendToGetReport.setBackground(new Color(183,244,216));
+        for (int i = 0; i < monthsArray.length; i++) {
+            monthsArray[i] = String.valueOf(month++);
+        }
+    }
 
-        tableReports = new JTable(model);
-        tableReports.setShowGrid(true);
-        tableReports.setShowVerticalLines(true);
+    public void setDaysArray()
+    {
+        int day = 0;
 
-        JScrollPane pane = new JScrollPane(tableReports);
+        for (int i = 0; i < daysArray.length; i++) {
+            daysArray[i] = String.valueOf(day++);
+        }
+    }
 
-        reportsPanel = new JPanel();
-        reportsPanel.setLayout(new FlowLayout());
-        reportsPanelNorth = new JPanel();
-        reportsPanelNorth.setLayout(new FlowLayout());
-        reportsPanelSouth = new JPanel();
-        reportsPanelSouth.setLayout(new FlowLayout());
-        reportsPanel.setPreferredSize(new Dimension(100,100));
-        reportsPanelNorth.setPreferredSize(new Dimension(100,100));
-        reportsPanelSouth.setPreferredSize(new Dimension(100,100));
-        reportsPanelNorth.add(labelFromDateReports);
-        reportsPanelNorth.add(dayStartReports);
-        reportsPanelNorth.add(monthStartReports);
-        reportsPanelNorth.add(yearStartReports);
-        reportsPanelNorth.add(labelToDateReports);
-        reportsPanelNorth.add(dayEndReports);
-        reportsPanelNorth.add(monthEndReports);
-        reportsPanelNorth.add(yearEndReports);
-        reportsPanelNorth.add(buttonSendToGetReport);
-        reportsPanelSouth.add(labelSumReports);
-        reportsPanelSouth.add(textFieldSumReports);
-        reportsPanel.add(pane);
-        reportsPanel.setBackground(new Color(45,85,255));
-        reportsPanelNorth.setBackground(new Color(45,85,255));
-        reportsPanelSouth.setBackground(new Color(45,85,255));
-        reportsFrame.add(reportsPanel,BorderLayout.CENTER);
-        reportsFrame.add(reportsPanelNorth,BorderLayout.NORTH);
-        reportsFrame.add(reportsPanelSouth,BorderLayout.SOUTH);
-        reportsFrame.setSize(500, 500);
-        reportsFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        reportsFrame.setLocationRelativeTo(null);
-        reportsFrame.setVisible(true);
+    public void setYearsArray()
+    {
+        int year = 2019;
+
+        for (int i = 0; i < yearsArray.length; i++) {
+            yearsArray[i] = String.valueOf(year++);
+        }
     }
 
     public static void main(String[] args) {

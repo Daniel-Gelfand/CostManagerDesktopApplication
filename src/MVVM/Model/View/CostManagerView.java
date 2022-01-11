@@ -3,10 +3,7 @@ package MVVM.Model.View;
 import MVVM.Model.*;
 
 import javax.swing.*;
-import java.awt.*;
-import java.sql.ResultSet;
 import java.util.LinkedList;
-import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,6 +22,7 @@ public class CostManagerView implements IView {
     private AddNewCostFrame m_AddNewCostFrame;
     private ReportsFrame m_ReportsFrame;
     private ExecutorService service;
+    private FrameAddNewCategory m_frameAddNewCategory;
 
     public CostManagerView() {
         this.service = Executors.newFixedThreadPool(5);
@@ -44,11 +42,6 @@ public class CostManagerView implements IView {
         this.viewModel = viewModel;
     }
 
-    // This method alert if user exits on signup page.
-    @Override
-    public void showUsernameIsTaken() {
-        JOptionPane.showMessageDialog(null,"Username already exists!", "Account already exists", JOptionPane.WARNING_MESSAGE);
-    }
 
     // This method alert is login to account was successfully, and continue to main menu page.
     @Override
@@ -81,7 +74,8 @@ public class CostManagerView implements IView {
     // This method return to the first screen in gui.
     @Override
     public void LogOutFromAccount() {
-        this.m_MainMenuFrame.toDispose();
+        this.m_MainMenuFrame.toDispose();  // צריך לשים לב אם רוצים לכבות את כל התפריטים ברגע שמתנתקים
+        //m_frameAddNewCategory.toDispose();
         this.m_LoginFrame = new LoginFrame(viewModel, this);
     }
 
@@ -95,8 +89,8 @@ public class CostManagerView implements IView {
 
     // This method alert if user or password have problem.
     @Override
-    public void UserDoesNotExist() {
-        JOptionPane.showMessageDialog(null,"Invalid Username or Password!", "*WARNING!*", JOptionPane.WARNING_MESSAGE);
+    public void UserDoesNotExist(String message) {
+        JOptionPane.showMessageDialog(null,message, "*WARNING!*", JOptionPane.WARNING_MESSAGE);
     }
 
     // This method open the reports frame.
@@ -120,7 +114,6 @@ public class CostManagerView implements IView {
                 }
             }
         });
-
     }
 
     // This method show the reports on frame.
@@ -160,37 +153,28 @@ public class CostManagerView implements IView {
     }
 
     @Override
-    public void addNewCostFailed() {
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        JOptionPane.showMessageDialog(null,"Add new cost failed", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
-                    }
-                });
-            }
-        });
+    public void CloseAddNewCategory() {
+        m_frameAddNewCategory.toDispose();
     }
 
     @Override
-    public void getReportFailed() {
+    public void startAddNewCategory() {
+        m_frameAddNewCategory = new FrameAddNewCategory(viewModel);
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
         service.submit(new Runnable() {
             @Override
             public void run() {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        JOptionPane.showMessageDialog(null,"Get report failed", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null,message, "*WARNING!*", JOptionPane.ERROR_MESSAGE);;
                     }
                 });
             }
         });
-    }
-
-    public static void main(String[] args) {
-        //CostManagerView costManagerView = new CostManagerView();
 
     }
 

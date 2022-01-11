@@ -1,7 +1,6 @@
 package MVVM.Model;
 
 
-import java.sql.ResultSet;
 import java.util.LinkedList;
 
 /**
@@ -18,9 +17,6 @@ public interface IView {
     // Set IViewModel (MVVM Architecture)
     public void setIViewModel(IViewModel viewModel);
 
-    // This method alert if user exits on signup page.
-    public void showUsernameIsTaken();
-
     // This method alert is login to account was successfully, and continue to main menu page.
     public void LoginSuccessfully(Account account);
 
@@ -34,7 +30,7 @@ public interface IView {
     public void AddNewCostSuccessfully(Cost cost, Account account);
 
     // This method alert if user or password have problem.
-    public void UserDoesNotExist();
+    public void UserDoesNotExist(String message);
 
     // This method open the reports frame.
     public void startReports(Account account);
@@ -50,7 +46,9 @@ public interface IView {
 
     public void logout();
 
-    public void addNewCostFailed();
+    void CloseAddNewCategory();
 
-    public void getReportFailed();
+    void startAddNewCategory();
+
+    void showErrorMessage(String message);
 }
