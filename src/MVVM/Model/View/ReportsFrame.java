@@ -25,8 +25,8 @@ public class ReportsFrame {
     private JComboBox dayStartReports;
     private JComboBox monthStartReports;
     private JComboBox yearStartReports;
-    private String [] daysArray = new String[32];
-    private String [] monthsArray = new String[13];
+    private String [] daysArray = new String[31];
+    private String [] monthsArray = new String[12];
     private String [] yearsArray = new String[10];
     private JComboBox dayEndReports;
     private JComboBox monthEndReports;
@@ -39,10 +39,6 @@ public class ReportsFrame {
     private JPanel reportsPanelSouth;
     private JLabel labelSumReports;
     private JTextField textFieldSumReports;
-
-
-
-
 
 
     public ReportsFrame(IViewModel viewModel, Account account) {
@@ -131,9 +127,12 @@ public class ReportsFrame {
 
     public void setReportsButton()
     {
-        Date start = new Date(yearStartReports.getSelectedIndex() + 119, monthStartReports.getSelectedIndex() - 1, dayStartReports.getSelectedIndex());
-        Date end = new Date(yearEndReports.getSelectedIndex() + 119, monthEndReports.getSelectedIndex() - 1, dayEndReports.getSelectedIndex());
-
+        System.out.println(yearStartReports.getSelectedItem() + "-" + monthStartReports.getSelectedItem() + "-" + dayStartReports.getSelectedItem());
+        System.out.println(yearEndReports.getSelectedItem() + "-" + monthEndReports.getSelectedItem() + "-" + dayEndReports.getSelectedItem());
+        Date start = Date.valueOf(yearStartReports.getSelectedItem() + "-" + monthStartReports.getSelectedItem() + "-" + dayStartReports.getSelectedItem());
+        Date end = Date.valueOf(yearEndReports.getSelectedItem() + "-" + monthEndReports.getSelectedItem() + "-" + dayEndReports.getSelectedItem());
+        System.out.println("start" + start);
+        System.out.println("end" + end);
         Collection<Cost> costs = new LinkedList<>();
         viewModel.getReport(account, start, end);
     }
@@ -180,25 +179,38 @@ public class ReportsFrame {
 
     public void setMonthArray()
     {
-        int month = 0;
+        int month = 1;
 
         for (int i = 0; i < monthsArray.length; i++) {
-            monthsArray[i] = String.valueOf(month++);
+            if (month < 10)
+            {
+                monthsArray[i] = "0" + month++;
+            }else
+            {
+                monthsArray[i] = String.valueOf(month++);
+            }
+
         }
     }
 
     public void setDaysArray()
     {
-        int day = 0;
+        int day = 1;
 
         for (int i = 0; i < daysArray.length; i++) {
-            daysArray[i] = String.valueOf(day++);
+            if (day < 10)
+            {
+                daysArray[i] = "0" + day++;
+            }else
+            {
+                daysArray[i] = String.valueOf(day++);
+            }
         }
     }
 
     public void setYearsArray()
     {
-        int year = 2019;
+        int year = 2015;
 
         for (int i = 0; i < yearsArray.length; i++) {
             yearsArray[i] = String.valueOf(year++);
@@ -206,7 +218,6 @@ public class ReportsFrame {
     }
 
     public static void main(String[] args) {
-
 
     }
 
