@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class FrameAddNewCategory {
 
+
     private JFrame frameAddCategory;
     private JPanel panelAddCategory;
     private JButton buttonAdd;
@@ -18,49 +19,59 @@ public class FrameAddNewCategory {
 
     public FrameAddNewCategory(IViewModel viewModel, Account account) {
 
+        // set the view model and the account that make request to add new category
         this.viewModel = viewModel;
         this.account = account;
+        //init the frame and is controllers
+        initialization();
+    }
 
+    /**
+     *  'initialization()'
+     * This method is initialization the frame and controllers.
+     */
+    private void initialization()
+    {
+        // set the frame and his controllers
         frameAddCategory = new JFrame();
         panelAddCategory = new JPanel();
-        buttonAdd = new JButton("Add category");
-        buttonAdd.setBackground(new Color(183,244,216));
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
-
-
-
         textFieldAdd = new JTextField(15);
 
-        frameAddCategory.setSize(300, 100);
-        frameAddCategory.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frameAddCategory.setLayout(new BorderLayout());
+        // set the add new category button action and title
+        buttonAdd = new JButton("Add category");
+        buttonAdd.addActionListener(e -> addNewCategory());
 
+        //set the panel color and adding him the right controllers
         panelAddCategory.setBackground(Color.BLUE);
         panelAddCategory.add(textFieldAdd);
         panelAddCategory.add(buttonAdd);
 
-        buttonAdd.addActionListener(e -> addNewCategory());
-
-        frameAddCategory.setIconImage(icon);
+        //set frame details and adding to him the right controllers
+        frameAddCategory.setSize(300, 100);
+        frameAddCategory.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frameAddCategory.setLayout(new BorderLayout());
         frameAddCategory.add(panelAddCategory, BorderLayout.CENTER);
         frameAddCategory.setResizable(false);
         frameAddCategory.setVisible(true);
-
-
     }
 
+    /**
+     * 'addNewCategory()'
+     * This method create category by user selection and then
+     * ask from the view model to make turn to the model for adding the category.
+     */
     private void addNewCategory() {
-
         Category category = new Category(textFieldAdd.getText());
         viewModel.addNewCategory(category, account);
     }
 
+    /**
+     * 'toDispose()'
+     * This method help for the view to dispose the frame.
+     */
     public void toDispose()
     {
         frameAddCategory.dispose();
     }
 
-    public static void main(String[] args) {
-
-    }
 }

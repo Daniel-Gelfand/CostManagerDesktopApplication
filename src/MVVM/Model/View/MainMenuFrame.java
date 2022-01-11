@@ -15,6 +15,7 @@ import java.awt.*;
 
 public class MainMenuFrame {
 
+    // the members that represent the form
     private JButton buttonAddNewCostMain;
     private JButton buttonReportsMain;
     private JButton buttonLogOutMain;
@@ -24,6 +25,7 @@ public class MainMenuFrame {
     private JLabel labelHelloUser;
     private JPanel mainMenuPanelNorth;
     private JPanel mainMenuPanelCenter;
+    // this members connect between the screens and from the view to the model.
     private IView view;
     private IViewModel viewModel;
 
@@ -32,7 +34,11 @@ public class MainMenuFrame {
         this.viewModel = viewModel;
         this.account = account;
         this.view = view;
+        // init the frame and the controllers.
+        initialization();
+    }
 
+    private void initialization() {
         // set the main menu frame
         mainFrame = new JFrame();
         mainFrame.setTitle("Main Form");
@@ -102,6 +108,7 @@ public class MainMenuFrame {
     }
 
     /**
+     *  setButtonAddNewCategory()
      * this method open add new category screen
      */
     private void setButtonAddNewCategory() {
@@ -109,6 +116,7 @@ public class MainMenuFrame {
     }
 
     /**
+     * setButtonAddNewCostMain()
      * this method open add new cost screen
      */
     public void setButtonAddNewCostMain() {
@@ -116,6 +124,7 @@ public class MainMenuFrame {
     }
 
     /**
+     * setButtonReportsMain()
      * this method open report screen
      */
     public void setButtonReportsMain() {
@@ -123,6 +132,7 @@ public class MainMenuFrame {
     }
 
     /**
+     * setButtonLogOutMain()
      * this method return the user to login screen
      */
     public void setButtonLogOutMain() {
@@ -130,6 +140,7 @@ public class MainMenuFrame {
     }
 
     /**
+     * toDispose()
      * this method help close the screen from CostManagerView
      */
     public void toDispose() {
