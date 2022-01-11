@@ -12,7 +12,19 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.LinkedList;
 /**
- * This Class is Gui of Reports Page.
+ * 'ReportsFrame' :
+ * This Class is Reports Frame GUI frame screen .
+ *
+ * Methods:
+ * (1) MainMenuFrame(IViewModel viewModel, Account account, IView view),
+ * (2) initialization(),
+ * (3) setReportsButton(),
+ * (4) showReportsByDate(LinkedList<Cost> costs),
+ * (5) setTableByDates(String[][] data, String[] columns , double sum)
+ * (6) setMonthArray()
+ * (7) setDayArray()
+ * (8) setYearArray()
+
  *
  */
 

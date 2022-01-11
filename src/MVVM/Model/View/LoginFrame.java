@@ -9,11 +9,21 @@ import javax.swing.text.View;
 import java.awt.*;
 
 /**
- * This Class is Gui of Login Page.
+ * 'LoginFrame' :
+ * This Class is AddNewCategory GUI frame screen .
+ *
+ * Methods:
+ * (1) LoginFrame(IViewModel viewModel, IView view),
+ * (2) initialization(),
+ * (3) setLoginButton(),
+ * (4) setSignUpButton(),
+ * (5) toDispose().
  *
  */
 
 public class LoginFrame {
+
+    //Login frame members
     private JFrame loginFrame;
     private JPanel loginPanel;
     private JTextField textFieldUserName;

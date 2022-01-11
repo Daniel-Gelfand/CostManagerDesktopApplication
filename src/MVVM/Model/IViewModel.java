@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * 'IModel':
+ * 'IViewModel':
  * This interface implements the model in MVVM architecture.
  * Methods:
  * (1) setView(IView view),

@@ -7,9 +7,20 @@ import MVVM.Model.IViewModel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * 'FrameAddNewCategory' :
+ * This Class is AddNewCategory GUI frame screen .
+ *
+ * Methods:
+ * (1) FrameAddNewCategory(IViewModel viewModel, Account account),
+ * (2) initialization(),
+ * (3) addNewCategory(),
+ * (4) toDispose().
+ *
+ */
 public class FrameAddNewCategory {
 
-
+    // AddNewCategory frame members
     private JFrame frameAddCategory;
     private JPanel panelAddCategory;
     private JButton buttonAdd;

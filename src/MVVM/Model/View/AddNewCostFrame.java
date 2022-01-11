@@ -11,8 +11,21 @@ import java.sql.Date;
 import java.util.LinkedList;
 
 /**
+ * 'AddNewCostFrame' :
+ *
  * This Class is Gui of Add New Cost Page.
  *
+ * Methods:
+ * (1) AddNewCostFrame(IViewModel viewModel, Account account, LinkedList<Category> categories),
+ * (2) initialization(),
+ * (3) setAddNewCostButton(),
+ * (4) CheckIfCategoryIsNotNull(),
+ * (5) checkIfAmountIsValid(),
+ * (6) convertCurrencyToString(int index),
+ * (7) setMonthArray(),
+ * (8) setYearsArray(),
+ * (9) setCategoriesArray(LinkedList<Category> categories)
+ * (10) toDispose()
  */
 
 public class AddNewCostFrame {

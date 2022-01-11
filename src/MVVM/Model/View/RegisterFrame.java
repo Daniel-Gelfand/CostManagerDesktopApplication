@@ -9,10 +9,16 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This Class is Gui of Register Page.
+ * 'RegisterFrame' :
+ * This Class is Register Frame GUI frame screen .
+ *
+ * Methods:
+ * (1) MainMenuFrame(IViewModel viewModel, Account account, IView view),
+ * (2) initialization(),
+ * (3) setButtonCreateRegister(),
+ * (4) toDispose().
  *
  */
-
 public class RegisterFrame{
 
     private JFrame registerFrame;

@@ -8,10 +8,19 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This Class is Gui of Main Menu Page.
+ * 'MainMenuFrame' :
+ * This Class is MainMenu GUI frame screen .
+ *
+ * Methods:
+ * (1) MainMenuFrame(IViewModel viewModel, Account account, IView view),
+ * (2) initialization(),
+ * (3) setButtonAddNewCategory(),
+ * (4) setButtonAddNewCostMain(),
+ * (5) setButtonReportsMain()(),
+ * (6) setButtonLogOutMain(),
+ * (7) toDispose()
  *
  */
-
 
 public class MainMenuFrame {
 
