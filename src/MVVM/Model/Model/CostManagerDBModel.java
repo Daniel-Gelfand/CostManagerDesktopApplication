@@ -116,8 +116,7 @@ public class CostManagerDBModel implements IModel {
             throw new CostManagerExceptions("The category already exist!",e);
         }
     }
-    //Categories_db" + "(Category)" + "values (?)";
-    // This method not in use yet.
+
     @Override
     public LinkedList<Category> getCategories(Account account) throws CostManagerExceptions {
 

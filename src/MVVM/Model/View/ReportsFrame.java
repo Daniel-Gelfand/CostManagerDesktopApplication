@@ -20,14 +20,12 @@ public class ReportsFrame {
     private Account account;
     private IViewModel viewModel;
 
+    //frame and controllers declaration
     private JFrame reportsFrame;
     private JPanel reportsPanel;
     private JComboBox dayStartReports;
     private JComboBox monthStartReports;
     private JComboBox yearStartReports;
-    private String [] daysArray = new String[31];
-    private String [] monthsArray = new String[12];
-    private String [] yearsArray = new String[10];
     private JComboBox dayEndReports;
     private JComboBox monthEndReports;
     private JComboBox yearEndReports;
@@ -40,37 +38,55 @@ public class ReportsFrame {
     private JLabel labelSumReports;
     private JTextField textFieldSumReports;
 
+    // Arrays for date combo box set them with the methods below
+    private String [] daysArray = new String[31];
+    private String [] monthsArray = new String[12];
+    private String [] yearsArray = new String[10];
+
 
     public ReportsFrame(IViewModel viewModel, Account account) {
         this.viewModel = viewModel;
         this.account = account;
-
         setDaysArray();
         setMonthArray();
         setYearsArray();
+        initialization();
+    }
 
+    /**
+     * This method initialization the frame and is controllers.
+     */
+    private void initialization()
+    {
+        // set the main frame and title
         reportsFrame = new JFrame();
         reportsFrame.setTitle("Reports Form");
 
+        //set the combo boxes for the Start Date the string arrays members (days, months, year)
         dayStartReports = new JComboBox(daysArray);
         monthStartReports = new JComboBox(monthsArray);
         yearStartReports = new JComboBox(yearsArray);
+        // set the right label for the combo boxes
+        labelFromDateReports = new JLabel("From Date: ");
 
+        //set the combo boxes for the Start End the string arrays members (days, months, year)
         dayEndReports = new JComboBox(daysArray);
         monthEndReports = new JComboBox(monthsArray);
         yearEndReports = new JComboBox(yearsArray);
-        labelFromDateReports = new JLabel("From Date: ");
+        // set the right label for the combo boxes
         labelToDateReports = new JLabel("To Date: ");
 
-
+        // set the report button name action and color
         buttonSendToGetReport = new JButton("Send To Get Report");
         buttonSendToGetReport.addActionListener(e -> setReportsButton());
+        buttonSendToGetReport.setBackground(new Color(183,244,216));
 
+        // set the label that Represents the sum of cost the user chose
         labelSumReports = new JLabel("Total sum in ILS: ");
         textFieldSumReports = new JTextField(20);
 
-        reportsFrame.setLayout(new BorderLayout());
 
+        // set the table that show the cost by details
         String columns[] = { "Username", "Categories", "Description","Cost","Currency","Date"};
         String data [][] = new String[0][6];
         DefaultTableModel model = new DefaultTableModel(data,columns);
@@ -78,18 +94,22 @@ public class ReportsFrame {
         tableReports.setShowGrid(true);
         tableReports.setShowVerticalLines(true);
         JScrollPane pane = new JScrollPane(tableReports);
+
+        // set the panels
         reportsPanel = new JPanel();
         reportsPanelNorth = new JPanel();
         reportsPanelSouth = new JPanel();
 
+        // add image icon to the frame
         Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
         reportsFrame.setIconImage(icon);
-        buttonSendToGetReport.setBackground(new Color(183,244,216));
 
+        // set panels sizes
         reportsPanel.setPreferredSize(new Dimension(100,100));
         reportsPanelNorth.setPreferredSize(new Dimension(100,100));
         reportsPanelSouth.setPreferredSize(new Dimension(100,100));
 
+        // adding controllers to north panel
         reportsPanelNorth.add(labelFromDateReports);
         reportsPanelNorth.add(dayStartReports);
         reportsPanelNorth.add(monthStartReports);
@@ -99,15 +119,19 @@ public class ReportsFrame {
         reportsPanelNorth.add(monthEndReports);
         reportsPanelNorth.add(yearEndReports);
         reportsPanelNorth.add(buttonSendToGetReport);
+
+        // adding controllers to south panel
         reportsPanelSouth.add(labelSumReports);
         reportsPanelSouth.add(textFieldSumReports);
         reportsPanel.add(pane);
 
-
+        // set color to the panels
         reportsPanel.setBackground(new Color(45,85,255));
         reportsPanelNorth.setBackground(new Color(45,85,255));
         reportsPanelSouth.setBackground(new Color(45,85,255));
 
+        // adding the panels to the frame and set his details
+        reportsFrame.setLayout(new BorderLayout());
         reportsFrame.add(reportsPanel,BorderLayout.CENTER);
         reportsFrame.add(reportsPanelNorth,BorderLayout.NORTH);
         reportsFrame.add(reportsPanelSouth,BorderLayout.SOUTH);
@@ -116,20 +140,26 @@ public class ReportsFrame {
         reportsFrame.setLocationRelativeTo(null);
         reportsFrame.setResizable(false);
         reportsFrame.setVisible(true);
-
-
     }
 
+
+    /**
+     * setReportsButton()
+     * This method ask from the view model report of expenses by user dates selection.
+     */
     public void setReportsButton()
     {
+        // init start date and end date by user selection.
         Date start = Date.valueOf(yearStartReports.getSelectedItem() + "-" + monthStartReports.getSelectedItem() + "-" + dayStartReports.getSelectedItem());
         Date end = Date.valueOf(yearEndReports.getSelectedItem() + "-" + monthEndReports.getSelectedItem() + "-" + dayEndReports.getSelectedItem());
-        System.out.println("start" + start);
-        System.out.println("end" + end);
-        Collection<Cost> costs = new LinkedList<>();
         viewModel.getReport(account, start, end);
     }
 
+    /**
+     * showReportsByDate(LinkedList<Cost> costs)
+     * this method make a matrix of data for the table model
+     * @param costs - this methode get list of cost by specific user
+     */
     public void showReportsByDate(LinkedList<Cost> costs) {
 
         String columns[] = { "Username", "Categories", "Description","Cost","Currency","Date"};
@@ -138,7 +168,6 @@ public class ReportsFrame {
         int i = 0;
 
         for (Cost c: costs) {
-            System.out.println(c.getUsernames() + " " + c.getCategories() + " " + c.getCostAmount() + " " + c.getDate());
             String username = c.getUsernames();
             String categories = c.getCategories();
             String description = c.getDescription();
@@ -158,6 +187,14 @@ public class ReportsFrame {
         setTableByDates(data,columns , sumOfCosts);
     }
 
+
+    /**
+     * setTableByDates(String[][] data, String[] columns , double sum)
+     * This method create new table by user date selection and show the costs on the table that show on the screen
+     * @param data
+     * @param columns
+     * @param sum
+     */
     public void setTableByDates(String[][] data, String[] columns , double sum) {
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -170,6 +207,10 @@ public class ReportsFrame {
         });
     }
 
+    /**
+     * setMonthArray()
+     * This method set months array
+     */
     public void setMonthArray()
     {
         int month = 1;
@@ -186,6 +227,10 @@ public class ReportsFrame {
         }
     }
 
+    /**
+     * setDaysArray()
+     * This method set months array
+     */
     public void setDaysArray()
     {
         int day = 1;
@@ -201,6 +246,10 @@ public class ReportsFrame {
         }
     }
 
+    /**
+     * setYearsArray()
+     * This method set years array
+     */
     public void setYearsArray()
     {
         int year = 2015;
@@ -209,9 +258,4 @@ public class ReportsFrame {
             yearsArray[i] = String.valueOf(year++);
         }
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }

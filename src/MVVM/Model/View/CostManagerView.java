@@ -50,23 +50,35 @@ public class CostManagerView implements IView {
         this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
     }
 
+
+    @Override
+    public void CloseAddNewCategory() {
+        m_frameAddNewCategory.toDispose();
+    }
+
+    @Override
+    public void startAddNewCategory(Account account) {
+        m_frameAddNewCategory = new FrameAddNewCategory(viewModel, account);
+    }
+
+    @Override
+    public void showCategories(LinkedList<Category> categories) {
+        m_AddNewCostFrame.setCategoriesArray(categories);
+    }
+
     // This method start new frame of adding cost.
     @Override
     public void startAddNewCost(Account account, LinkedList<Category> categories) {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
+                SwingUtilities.invokeLater(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            m_AddNewCostFrame = new AddNewCostFrame(viewModel, account, categories);
-                        }
-                    });
-                }catch (Exception e) {
-
-                }
+                    @Override
+                    public void run() {
+                        m_AddNewCostFrame = new AddNewCostFrame(viewModel, account, categories);
+                    }
+                });
             }
         });
     }
@@ -99,18 +111,13 @@ public class CostManagerView implements IView {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
 
-                            m_ReportsFrame = new ReportsFrame(viewModel, account);;
-                        }
-                    });
-                }
-                catch (Exception e) {
-
-                }
+                        m_ReportsFrame = new ReportsFrame(viewModel, account);;
+                    }
+                });
             }
         });
     }
@@ -152,21 +159,6 @@ public class CostManagerView implements IView {
     }
 
     @Override
-    public void CloseAddNewCategory() {
-        m_frameAddNewCategory.toDispose();
-    }
-
-    @Override
-    public void startAddNewCategory(Account account) {
-        m_frameAddNewCategory = new FrameAddNewCategory(viewModel, account);
-    }
-
-    @Override
-    public void showCategories(LinkedList<Category> categories) {
-        m_AddNewCostFrame.setCategoriesArray(categories);
-    }
-
-    @Override
     public void showErrorMessage(String message) {
         service.submit(new Runnable() {
             @Override
@@ -181,6 +173,5 @@ public class CostManagerView implements IView {
         });
 
     }
-
 
 }
