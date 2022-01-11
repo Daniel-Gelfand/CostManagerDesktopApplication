@@ -106,6 +106,10 @@ public class ReportsFrame {
         tableReports.setShowGrid(true);
         tableReports.setShowVerticalLines(true);
         JScrollPane pane = new JScrollPane(tableReports);
+        pane.setVisible(true);
+        tableReports.setPreferredScrollableViewportSize(new Dimension(450,200));
+        tableReports.setFillsViewportHeight(true);
+
 
         // set the panels
         reportsPanel = new JPanel();
@@ -186,7 +190,7 @@ public class ReportsFrame {
             double cost = c.getCostAmount();
             String currency = c.getCurrency();
             Date date = c.getDate();
-            sumOfCosts += cost;
+            sumOfCosts += changeToIsraeliShekel(currency, cost);
 
             data[i][0] = username;
             data[i][1] = categories;
@@ -197,6 +201,35 @@ public class ReportsFrame {
             i++;
         }
         setTableByDates(data,columns , sumOfCosts);
+    }
+
+    /**
+     * This method change the cost amount from foreign exchange to ILS.
+     * @param currency
+     * @param costAmount
+     * @return
+     */
+    public double changeToIsraeliShekel(String currency, double costAmount) {
+        double totalSum = 0;
+
+        if (currency.equals("Dollar"))
+        {
+            totalSum += costAmount * 3.12;
+        }
+        else if (currency.equals("Euro"))
+        {
+            totalSum += costAmount * 3.54;
+        }
+        else if (currency.equals("Sterling"))
+        {
+            totalSum += costAmount * 3.1;
+        }
+        else
+        {
+            totalSum = costAmount;
+        }
+
+        return totalSum;
     }
 
 
