@@ -91,10 +91,13 @@ public class ReportsFrame {
         buttonSendToGetReport.setBackground(new Color(183,244,216));
 
 
+
+
+
+
         reportsPanel.setPreferredSize(new Dimension(100,100));
         reportsPanelNorth.setPreferredSize(new Dimension(100,100));
         reportsPanelSouth.setPreferredSize(new Dimension(100,100));
-
 
         reportsPanelNorth.add(labelFromDateReports);
         reportsPanelNorth.add(dayStartReports);
@@ -109,6 +112,7 @@ public class ReportsFrame {
         reportsPanelSouth.add(textFieldSumReports);
         reportsPanel.add(pane);
 
+
         reportsPanel.setBackground(new Color(45,85,255));
         reportsPanelNorth.setBackground(new Color(45,85,255));
         reportsPanelSouth.setBackground(new Color(45,85,255));
@@ -119,6 +123,7 @@ public class ReportsFrame {
         reportsFrame.setSize(500, 500);
         reportsFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         reportsFrame.setLocationRelativeTo(null);
+        reportsFrame.setResizable(false);
         reportsFrame.setVisible(true);
 
 

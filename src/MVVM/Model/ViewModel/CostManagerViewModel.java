@@ -150,6 +150,3 @@ public class CostManagerViewModel implements IViewModel {
         });
     }
 }
-
-    // This method switch between screens in the view. From Signup Page --> Login Page.
-

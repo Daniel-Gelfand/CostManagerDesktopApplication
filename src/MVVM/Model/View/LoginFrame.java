@@ -69,6 +69,7 @@ public class LoginFrame {
         loginFrame.add(loginPanel,BorderLayout.CENTER);
         loginFrame.setSize(250,250);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setResizable(false);
         loginFrame.setLocationRelativeTo(null); // Give Me The Window Login In Center Of Screen
         loginFrame.setVisible(true);
     }

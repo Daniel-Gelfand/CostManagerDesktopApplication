@@ -97,6 +97,7 @@ public class MainMenuFrame {
         mainFrame.setLayout(new BorderLayout());
         mainFrame.add(mainMenuPanelNorth,BorderLayout.CENTER);
         mainFrame.setLocationRelativeTo(null);
+        mainFrame.setResizable(false);
         mainFrame.setVisible(true);
     }
 

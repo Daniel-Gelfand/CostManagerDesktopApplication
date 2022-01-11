@@ -35,6 +35,7 @@ public class FrameAddNewCategory {
         buttonAdd.addActionListener(e -> addNewCategory());
 
         frameAddCategory.add(panelAddCategory, BorderLayout.CENTER);
+        frameAddCategory.setResizable(false);
         frameAddCategory.setVisible(true);
 
 
