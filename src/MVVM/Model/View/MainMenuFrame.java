@@ -105,7 +105,7 @@ public class MainMenuFrame {
      * this method open add new category screen
      */
     private void setButtonAddNewCategory() {
-        view.startAddNewCategory();
+        view.startAddNewCategory(account);
     }
 
     /**

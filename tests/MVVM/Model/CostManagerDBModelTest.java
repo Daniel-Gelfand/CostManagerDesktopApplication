@@ -42,7 +42,7 @@ class CostManagerDBModelTest {
 
     @org.junit.jupiter.api.Test
     void addCategory() throws CostManagerExceptions {
-        costManagerDBModel.addCategory(category);
+        costManagerDBModel.addCategory(category, account);
     }
 
     @org.junit.jupiter.api.Test

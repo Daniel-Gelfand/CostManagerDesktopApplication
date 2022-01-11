@@ -1,5 +1,6 @@
 package MVVM.Model.View;
 
+import MVVM.Model.Account;
 import MVVM.Model.Category;
 import MVVM.Model.IViewModel;
 
@@ -13,10 +14,12 @@ public class FrameAddNewCategory {
     private JButton buttonAdd;
     private JTextField textFieldAdd;
     private IViewModel viewModel;
+    private Account account;
 
-    public FrameAddNewCategory(IViewModel viewModel) {
+    public FrameAddNewCategory(IViewModel viewModel, Account account) {
 
         this.viewModel = viewModel;
+        this.account = account;
 
         frameAddCategory = new JFrame();
         panelAddCategory = new JPanel();
@@ -44,7 +47,7 @@ public class FrameAddNewCategory {
     private void addNewCategory() {
 
         Category category = new Category(textFieldAdd.getText());
-        viewModel.addNewCategory(category);
+        viewModel.addNewCategory(category, account);
     }
 
     public void toDispose()

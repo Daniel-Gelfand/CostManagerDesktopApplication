@@ -28,39 +28,31 @@ public class CostManagerDBModel implements IModel {
     // This Ctor connect to database Sql server.
     public CostManagerDBModel() throws CostManagerExceptions {
 
-        Connection costManagerConnection = null;
 
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            System.out.println("Connected To DB!");
+        try (
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ){
         } catch (Exception e)
         {
             throw new CostManagerExceptions("Problem With Connect To DataBase {PHPAdmin}");
-        }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     // This method set new account in database.
     @Override
     public void setupNewAccount(Account account) throws CostManagerExceptions {
-        Connection costManagerConnection = null;
 
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            System.out.println("Connected To DB!");
+
+        try(
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ) {
+
             String query = "insert into accounts_db" + "(usernames,passwords)"
                     + "values (?,?)";
 
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
-            System.out.println("Inserted To DB!");
             preparedStmt.setString(1, account.getUsername());
             preparedStmt.setString(2, account.getPassword());
             preparedStmt.execute();
@@ -68,35 +60,31 @@ public class CostManagerDBModel implements IModel {
         } catch (SQLException e) {
             throw  new CostManagerExceptions("The username already exist", e);
         }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     // This method search account in database and returns true or false in accordance.
     @Override
     public boolean loginToAccount(Account account) throws CostManagerExceptions {
-        Connection costManagerConnection = null;
         boolean isRegistered = false;
-        ResultSet resultSet = null;
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            System.out.println("Connected To DB!");
+        try (
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+
+                ){
+            ResultSet resultSet;
             if (account.getUsername() != null && account.getPassword() != null) {
+
                 String sql = "Select * from accounts_db Where usernames='" + account.getUsername() + "' and passwords='" + account.getPassword() + "'";
                 resultSet = statement.executeQuery(sql);
-                if (resultSet.next()) {
+
+                if (resultSet.next())
+                {
                     //in this case enter when at least one result comes it means user is valid
-                    System.out.println("Done,Loggin To Acount");
                     isRegistered = true;
-                } else {
+                }
+                else
+                {
                     //in this case enter when  result size is zero  it means user is invalid
-                    System.out.println("USER invalid");
                     isRegistered = false;
                 }
             }
@@ -105,87 +93,71 @@ public class CostManagerDBModel implements IModel {
         {
             throw new CostManagerExceptions("The username or password are wrong! please try again.",e);
         }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+
         return isRegistered;
     }
 
     // This method not in use yet.
     @Override
-    public void addCategory(Category category) throws CostManagerExceptions {
-        Connection costManagerConnection = null;
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            System.out.println("Connected To DB!");
-            String query = "insert into Categories_db" + "(Category)"
-                    + "values (?)";
+    public void addCategory(Category category, Account account) throws CostManagerExceptions {
+
+        try(
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ) {
+
+            String query = "insert into categories_dbtest" + "(usernames, categories)" + "values (?,?)";
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
             System.out.println("Inserted To DB!");
-            preparedStmt.setString(1, category.getCategory());
+            preparedStmt.setString(1, account.getUsername());
+            preparedStmt.setString(2, category.getCategory());
             preparedStmt.execute();
         } catch (SQLException e) {
             throw new CostManagerExceptions("The category already exist!",e);
-        }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
     //Categories_db" + "(Category)" + "values (?)";
     // This method not in use yet.
     @Override
-    public LinkedList<Category> getCategories() throws CostManagerExceptions {
-        Connection costManagerConnection = null;
+    public LinkedList<Category> getCategories(Account account) throws CostManagerExceptions {
 
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            ResultSet resultSet;
-            LinkedList<Category> categories = new LinkedList<>();
-            System.out.println("Connected To DB!");
-            String sql = "select * from Categories_db";
-            resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                Category category = new Category(resultSet.getString("Category"));
 
-                categories.add(category);
-            }
+        try (
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ){
 
-            return categories;
+                    ResultSet resultSet;
+                    LinkedList<Category> categories = new LinkedList<>();
+                    System.out.println("Connected To DB!");
+                    String sql = "SELECT categories FROM categories_dbtest WHERE usernames='" + account.getUsername() + "'";
+                    resultSet = statement.executeQuery(sql);
+                    while (resultSet.next()) {
+                         Category category = new Category(resultSet.getString("categories"));
+                        System.out.println(category.getCategory());
+
+                         categories.add(category);
+                    }
+
+                 return categories;
         }
         catch (SQLException e) {
             throw new CostManagerExceptions("Problem with get report", e);
-        }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     // This method add new cost to the database.
     @Override
     public void addNewCost(Cost cost) throws CostManagerExceptions{
-        Connection costManagerConnection = null;
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
-            System.out.println("Connected To DB!");
+
+        try (
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ){
+
             String query = "insert into main_db" + "(usernames,categories,description,cost,currency,date)"
                     + "values (?,?,?,?,?,?)";
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
-            System.out.println("Inserted To DB!");
             preparedStmt.setString(1, cost.getUsernames());
             preparedStmt.setString(2, cost.getCategories());
             preparedStmt.setString(3, cost.getDescription());
@@ -196,23 +168,16 @@ public class CostManagerDBModel implements IModel {
         } catch (SQLException e) {
             throw new CostManagerExceptions("Problem with add new cost!",e);
         }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     // This method returns reports about costs by selected dates.
     @Override
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
-        Connection costManagerConnection = null;
+        try (
+                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Statement statement = costManagerConnection.createStatement();
+                ){
 
-        try {
-            costManagerConnection = DriverManager.getConnection(url, username, password);
-            Statement statement = costManagerConnection.createStatement();
             ResultSet resultSet;
             LinkedList<Cost> costs = new LinkedList<>();
             System.out.println("Connected To DB!");
@@ -230,29 +195,5 @@ public class CostManagerDBModel implements IModel {
         catch (SQLException e) {
             throw new CostManagerExceptions("Problem with get report", e);
         }
-        finally {
-            try {
-                costManagerConnection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-
-        Account account = new Account("matan", "1234");
-        try {
-            CostManagerDBModel costManagerDBModel = new CostManagerDBModel();
-            LinkedList<Category> categories = costManagerDBModel.getCategories();
-            int index = 1;
-            for (Category category: categories) {
-                System.out.println(index++ + "." + "" + category.getCategory());
-            }
-            System.out.println();
-        } catch (CostManagerExceptions e) {
-            e.printStackTrace();
-        }
-
     }
 }

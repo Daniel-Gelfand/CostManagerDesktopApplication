@@ -131,12 +131,12 @@ public class CostManagerViewModel implements IViewModel {
     }
 
     @Override
-    public void addNewCategory(Category category) {
+    public void addNewCategory(Category category, Account account) {
         service.submit(new Runnable() {
             @Override
             public void run() {
                 try {
-                    model.addCategory(category);
+                    model.addCategory(category, account);
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
@@ -157,7 +157,7 @@ public class CostManagerViewModel implements IViewModel {
             @Override
             public void run() {
                 try {
-                    LinkedList<Category> resultSet = model.getCategories();
+                    LinkedList<Category> resultSet = model.getCategories(account);
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {

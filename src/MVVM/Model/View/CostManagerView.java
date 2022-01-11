@@ -157,8 +157,8 @@ public class CostManagerView implements IView {
     }
 
     @Override
-    public void startAddNewCategory() {
-        m_frameAddNewCategory = new FrameAddNewCategory(viewModel);
+    public void startAddNewCategory(Account account) {
+        m_frameAddNewCategory = new FrameAddNewCategory(viewModel, account);
     }
 
     @Override

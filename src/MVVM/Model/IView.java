@@ -50,7 +50,7 @@ public interface IView {
 
     void CloseAddNewCategory();
 
-    void startAddNewCategory();
+    void startAddNewCategory(Account account);
 
     void showErrorMessage(String message);
 }
