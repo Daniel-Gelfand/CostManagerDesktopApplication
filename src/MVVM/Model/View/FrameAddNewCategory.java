@@ -51,6 +51,11 @@ public class FrameAddNewCategory {
         // set the add new category button action and title
         buttonAdd = new JButton("Add category");
         buttonAdd.addActionListener(e -> addNewCategory());
+        buttonAdd.setBackground(new Color(183,244,216));
+
+        // add image icon to the frame
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
+        frameAddCategory.setIconImage(icon);
 
         //set the panel color and adding him the right controllers
         panelAddCategory.setBackground(Color.BLUE);

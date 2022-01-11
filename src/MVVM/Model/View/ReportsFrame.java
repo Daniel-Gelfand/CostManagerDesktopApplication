@@ -117,7 +117,7 @@ public class ReportsFrame {
         reportsPanelSouth = new JPanel();
 
         // add image icon to the frame
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
         reportsFrame.setIconImage(icon);
 
         // set panels sizes

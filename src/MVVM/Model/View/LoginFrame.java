@@ -74,7 +74,7 @@ public class LoginFrame {
         buttonSignUp.setBackground(new Color(254,250,212));
 
         // set the image icon of the frame
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
         loginFrame.setIconImage(icon);
 
         // set login panel details.

@@ -121,7 +121,7 @@ public class AddNewCostFrame {
         addNewCostPanel.add(buttonAddNewCost);
 
         // set the frame details
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
         addNewCostFrame.setIconImage(icon);
         addNewCostFrame.setTitle("Add New Cost Form");
         addNewCostFrame.setLayout(new BorderLayout());

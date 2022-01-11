@@ -80,7 +80,7 @@ public class MainMenuFrame {
         buttonAddNewCategory.setBackground(new Color(241, 200, 200));
         buttonAddNewCategory.setPreferredSize(new Dimension(200, 30));
 
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
 
         //set the north panel size and color
         mainMenuPanelNorth = new JPanel();

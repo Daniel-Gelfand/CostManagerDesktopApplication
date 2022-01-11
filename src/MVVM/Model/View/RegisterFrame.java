@@ -76,7 +76,7 @@ public class RegisterFrame{
 
         registerPanel = new JPanel();
         // set icon image for the frame
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/MVVM/Model/Images/CostManagerIcon.jpg");
         registerFrame.setIconImage(icon);
 
         //set register title, color and adding relevant controls
