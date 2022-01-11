@@ -48,8 +48,6 @@ public class RegisterFrame{
         buttonCreateRegister.addActionListener(e -> setButtonCreateRegister());
         labelAgreeTermsRegister = new JLabel("By Clicking 'Create', I Agree with Terms & Policy");
 
-        //String s1 = "<html> this is a text area <br> please add text to it <br> it has 20 rows <br> it has 20 columns </html> ";
-
         labelAgreeTermsRegister.setToolTipText("<html> 1.We have access to all the information you have entered in the software.  <br> 2.We can block you at any time. <br> 3.We may use your information for your own use. </html> ");
 
 

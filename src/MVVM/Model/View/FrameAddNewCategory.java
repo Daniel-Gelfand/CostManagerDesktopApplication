@@ -24,19 +24,24 @@ public class FrameAddNewCategory {
         frameAddCategory = new JFrame();
         panelAddCategory = new JPanel();
         buttonAdd = new JButton("Add category");
+        buttonAdd.setBackground(new Color(183,244,216));
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\icon1.jpg");
+
+
+
         textFieldAdd = new JTextField(15);
 
         frameAddCategory.setSize(300, 100);
         frameAddCategory.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frameAddCategory.setLayout(new BorderLayout());
 
-        //panelAddCategory.setPreferredSize(new Dimension(100,100));
         panelAddCategory.setBackground(Color.BLUE);
         panelAddCategory.add(textFieldAdd);
         panelAddCategory.add(buttonAdd);
 
         buttonAdd.addActionListener(e -> addNewCategory());
 
+        frameAddCategory.setIconImage(icon);
         frameAddCategory.add(panelAddCategory, BorderLayout.CENTER);
         frameAddCategory.setResizable(false);
         frameAddCategory.setVisible(true);
