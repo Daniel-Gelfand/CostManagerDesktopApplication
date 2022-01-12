@@ -26,8 +26,6 @@ import java.util.LinkedList;
  * (16) showErrorMessage(String message).
  *
  */
-
-
 public interface IView {
 
 
@@ -48,7 +46,7 @@ public interface IView {
      * 'LoginSuccessfully' is a method that alert if login to account was successfully, and continue to main menu page.
      * @param account username
      */
-    public void LoginSuccessfully(Account account);
+    public void loginSuccessfully(Account account);
 
     /**
      * 'startAddNewCost' is a method that start new frame of adding cost.
@@ -61,21 +59,21 @@ public interface IView {
     /**
      * 'LogOutFromAccount' is a method that return to the first screen in gui.
      */
-    public void LogOutFromAccount();
+    public void logOutFromAccount();
 
     /**
      * 'AddNewCostSuccessfully' is a method that alert when we added new cost to database.
      * @param cost cost details
      * @param account username
      */
-    public void AddNewCostSuccessfully(Cost cost, Account account);
+    public void addNewCostSuccessfully(Cost cost, Account account);
 
 
     /**
      * 'UserDoesNotExist' is a method that alert if user or password have problem or not exists.
      * @param message message
      */
-    public void UserDoesNotExist(String message);
+    public void userDoesNotExist(String message);
 
 
     /**
@@ -116,7 +114,7 @@ public interface IView {
     /**
      * 'CloseAddNewCategory' is a method that  close the AddNewCategory Frame.(when we click on close).
      */
-    void CloseAddNewCategory();
+    void closeAddNewCategory();
 
     /**
      * 'startAddNewCategory' is a method that adding new category to specific account.

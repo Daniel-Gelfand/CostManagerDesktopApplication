@@ -27,8 +27,7 @@ import java.util.LinkedList;
  * (9) setCategoriesArray(LinkedList<Category> categories)
  * (10) toDispose()
  */
-
-public class AddNewCostFrame {
+public class addNewCostFrame {
 
     // The members represent the add new cost form
     private JLabel labelCostAddNewCost;
@@ -58,10 +57,23 @@ public class AddNewCostFrame {
     private Account account;
 
 
-    public AddNewCostFrame(IViewModel viewModel, Account account, LinkedList<Category> categories) {
+
+
+    public void setViewModel(IViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public addNewCostFrame(IViewModel viewModel, Account account, LinkedList<Category> categories) {
         this.viewModel = viewModel;
         this.account = account;
         this.categoriesArray = setCategoriesArray(categories);
+//        setViewModel(viewModel);
+//        setAccount(account);
+//        setCategoriesArray(categories);
         setDaysArray();
         setMonthArray();
         setYearsArray();
@@ -142,11 +154,11 @@ public class AddNewCostFrame {
      * if it isn't show right message to the user.
      */
     public void setAddNewCostButton() {
-        if (CheckIfCategoryIsNotNull() && checkIfAmountIsValid())
+        if (checkIfCategoryIsNotNull() && checkIfAmountIsValid())
         {
 
             // set the members by the user selection
-            String username = account.getUsername();
+            String username = account.getUserName();
             String description = textDescriptionsCostAddNewCost.getText();
             String currency = convertCurrencyToString(this.currency.getSelectedIndex());
             String category = (String) comboBoxCategories.getSelectedItem();
@@ -166,7 +178,7 @@ public class AddNewCostFrame {
      * make checking if the user input is valid
      * @return boolean
      */
-    public boolean CheckIfCategoryIsNotNull()
+    public boolean checkIfCategoryIsNotNull()
     {
         boolean isValidCost = true;
 

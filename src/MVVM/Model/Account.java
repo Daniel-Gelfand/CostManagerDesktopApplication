@@ -16,7 +16,7 @@ package MVVM.Model;
 public class Account {
 
     //These members are appropriate to account.
-    private String username;
+    private String userName;
     private String password;
 
 
@@ -24,12 +24,12 @@ public class Account {
     /**
      * 'Account' is a constructor.
      * In this constructor we set username and password into Account.
-     * @param username username
+     * @param userName username
      * @param password password
      */
-    public Account(String username, String password) {
+    public Account(String userName, String password) {
         setPassword(password);
-        setUsername(username);
+        setUserName(userName);
     }
 
 
@@ -38,18 +38,18 @@ public class Account {
      * 'getUsername' is a method that gets the username.
      * @return username
      */
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
 
 
     /**
      * 'setUsername' is a method that sets the username.
-     * @param username username
+     * @param userName username
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 

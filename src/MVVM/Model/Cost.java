@@ -49,12 +49,12 @@ public class Cost {
      * @param date date
      */
     public Cost(String usernames, String categories, String description, double costAmount, String currency, Date date) {
-        this.usernames = usernames;
-        this.categories = categories;
-        this.description = description;
-        this.costAmount = costAmount;
-        this.currency = currency;
-        this.date = date;
+        setUsernames(usernames);
+        setCategories(categories);
+        setDescription(description);
+        setCostAmount(costAmount);
+        setCurrency(currency);
+        setDate(date);
     }
 
 

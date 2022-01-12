@@ -19,7 +19,6 @@ import java.util.List;
  * (7) addNewCategory(Category category, Account account)
  * (8) addNewCost(Account account)
  */
-
 public interface IViewModel {
 
 
@@ -27,28 +26,28 @@ public interface IViewModel {
      * 'setView' is a method that sets view member (MVVM).
      * @param view view
      */
-    public void setView(IView view);
+     void setView(IView view);
 
 
     /**
      * 'setModel' is a method that set model member (MVVM).
      * @param model
      */
-    public void setModel(IModel model);
+     void setModel(IModel model);
 
 
     /**
      * 'setupNewAccount' is a method that up new account in the system.
      * @param account username
      */
-    public void setupNewAccount(Account account);
+     void setupNewAccount(Account account);
 
 
     /**
      * 'loginToAccount' is a method that check if account is registered in the system.
      * @param account
      */
-    public void loginToAccount(Account account);
+     void loginToAccount(Account account);
 
 
     /**
@@ -56,7 +55,7 @@ public interface IViewModel {
      * @param cost cost details
      * @param account username
      */
-    public void addNewCost(Cost cost, Account account);
+     void addNewCost(Cost cost, Account account);
 
 
     /**
@@ -65,18 +64,18 @@ public interface IViewModel {
      * @param start from date
      * @param end to date
      */
-    public void getReport(Account account, Date start, Date end);
+     void getReport(Account account, Date start, Date end);
 
     /**
      * 'addNewCategory' is a method that adding new category to specific account.
      * @param category category
      * @param account username
      */
-    public void addNewCategory(Category category, Account account);
+     void addNewCategory(Category category, Account account);
 
     /**
      * 'addNewCost' is a method that add new cost to specific account on database.
      * @param account username
      */
-    public void addNewCost(Account account);
+     void addNewCost(Account account);
 }

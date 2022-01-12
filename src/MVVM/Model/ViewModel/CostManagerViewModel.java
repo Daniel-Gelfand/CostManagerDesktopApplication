@@ -14,7 +14,6 @@ import java.util.concurrent.Executors;
  *
  *
  */
-
 public class CostManagerViewModel implements IViewModel {
     // the class members of the view model.
     private IView view;
@@ -89,7 +88,7 @@ public class CostManagerViewModel implements IViewModel {
                             @Override
                             // if true continue the flow for the account
                             public void run() {
-                                view.LoginSuccessfully(account);
+                                view.loginSuccessfully(account);
                             }
                         });
                     } else {
@@ -97,7 +96,7 @@ public class CostManagerViewModel implements IViewModel {
                             // if false shoe the user that he type wrong details
                             @Override
                             public void run() {
-                                view.UserDoesNotExist("User doesn't exist!");
+                                view.userDoesNotExist("User doesn't exist!");
                             }
                         });
                     }
@@ -124,7 +123,7 @@ public class CostManagerViewModel implements IViewModel {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            view.AddNewCostSuccessfully(cost, account);
+                            view.addNewCostSuccessfully(cost, account);
                         }
                     });
 
@@ -179,7 +178,7 @@ public class CostManagerViewModel implements IViewModel {
                         @Override
                         //turn to the view for continue with the app flow.
                         public void run() {
-                            view.CloseAddNewCategory();
+                            view.closeAddNewCategory();
                         }
                     });
                 } catch (CostManagerExceptions e) {

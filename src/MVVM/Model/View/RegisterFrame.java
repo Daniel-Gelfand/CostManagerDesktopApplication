@@ -109,12 +109,12 @@ public class RegisterFrame{
      */
     public void setButtonCreateRegister() {
         // get text from the text fields
-        String username = textFieldUserNameRegister.getText();
+        String userName = textFieldUserNameRegister.getText();
         String password = textFieldPasswordRegister.getText();
-        Account newAccount = new Account(username, password);
+        Account newAccount = new Account(userName, password);
 
         // Check user input if ok so create new account.
-        if (username.length() < 4)
+        if (userName.length() < 4)
         {
             JOptionPane.showMessageDialog(null,"The username must contains 4 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
         }

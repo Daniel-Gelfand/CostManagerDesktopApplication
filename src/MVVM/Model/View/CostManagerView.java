@@ -30,17 +30,15 @@ import java.util.concurrent.Executors;
  * (15) startAddNewCategory(Account account),
  * (16) showErrorMessage(String message).
  */
-
-
 public class CostManagerView implements IView {
 
     //CostManagerView members
-    private RegisterFrame m_RegisterFrame;
-    private LoginFrame m_LoginFrame;
-    private MainMenuFrame m_MainMenuFrame;
-    private AddNewCostFrame m_AddNewCostFrame;
-    private ReportsFrame m_ReportsFrame;
-    private FrameAddNewCategory m_frameAddNewCategory;
+    private RegisterFrame registerFrame;
+    private LoginFrame loginFrame;
+    private MainMenuFrame mainMenuFrame;
+    private addNewCostFrame addNewCostFrame;
+    private ReportsFrame reportsFrame;
+    private FrameAddNewCategory frameAddNewCategory;
 
     //ViewModel member
     private IViewModel viewModel;
@@ -57,14 +55,13 @@ public class CostManagerView implements IView {
     }
 
 
-    // Set all panels and frames in login frame. (1st screen of gui)
 
     /**
      * 'start' is a method that sets all panels and frames in login frame. (1st screen of gui)
      */
     @Override
     public void start() {
-        this.m_LoginFrame = new LoginFrame(viewModel, this);
+        this.loginFrame = new LoginFrame(viewModel, this);
 
     }
 
@@ -85,9 +82,9 @@ public class CostManagerView implements IView {
      * @param account username
      */
     @Override
-    public void LoginSuccessfully(Account account) {
-        this.m_LoginFrame.toDispose();
-        this.m_MainMenuFrame = new MainMenuFrame(viewModel, account, this);
+    public void loginSuccessfully(Account account) {
+        this.loginFrame.toDispose();
+        this.mainMenuFrame = new MainMenuFrame(viewModel, account, this);
     }
 
 
@@ -95,8 +92,8 @@ public class CostManagerView implements IView {
      * 'CloseAddNewCategory is a method that close the frame of AddNewCategory and continue the flow of application.
      */
     @Override
-    public void CloseAddNewCategory() {
-        m_frameAddNewCategory.toDispose();
+    public void closeAddNewCategory() {
+        frameAddNewCategory.toDispose();
     }
 
     /**
@@ -105,7 +102,7 @@ public class CostManagerView implements IView {
      */
     @Override
     public void startAddNewCategory(Account account) {
-        m_frameAddNewCategory = new FrameAddNewCategory(viewModel, account);
+        frameAddNewCategory = new FrameAddNewCategory(viewModel, account);
     }
 
     /**
@@ -114,7 +111,7 @@ public class CostManagerView implements IView {
      */
     @Override
     public void showCategories(LinkedList<Category> categories) {
-        m_AddNewCostFrame.setCategoriesArray(categories);
+        addNewCostFrame.setCategoriesArray(categories);
     }
 
 
@@ -133,7 +130,7 @@ public class CostManagerView implements IView {
                     @Override
                     public void run() {
                         //Open the frame to specific account and initialize the correct categories.
-                        m_AddNewCostFrame = new AddNewCostFrame(viewModel, account, categories);
+                        addNewCostFrame = new addNewCostFrame(viewModel, account, categories);
                     }
                 });
             }
@@ -145,9 +142,9 @@ public class CostManagerView implements IView {
      * 'LogOutFromAccount' is a method that disconnect from current account and return to the log in  screen in gui.
      */
     @Override
-    public void LogOutFromAccount() {
-        this.m_MainMenuFrame.toDispose();
-        this.m_LoginFrame = new LoginFrame(viewModel, this);
+    public void logOutFromAccount() {
+        this.mainMenuFrame.toDispose();
+        this.loginFrame = new LoginFrame(viewModel, this);
     }
 
 
@@ -157,9 +154,9 @@ public class CostManagerView implements IView {
      * @param account username
      */
     @Override
-    public void AddNewCostSuccessfully(Cost cost, Account account) {
+    public void addNewCostSuccessfully(Cost cost, Account account) {
         JOptionPane.showMessageDialog(null,"The expense was successfully added!", "Cost added", JOptionPane.PLAIN_MESSAGE);
-        this.m_AddNewCostFrame.toDispose();
+        this.addNewCostFrame.toDispose();
     }
 
 
@@ -168,7 +165,7 @@ public class CostManagerView implements IView {
      * @param message message
      */
     @Override
-    public void UserDoesNotExist(String message) {
+    public void userDoesNotExist(String message) {
         JOptionPane.showMessageDialog(null,message, "*WARNING!*", JOptionPane.WARNING_MESSAGE);
     }
 
@@ -185,7 +182,7 @@ public class CostManagerView implements IView {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        m_ReportsFrame = new ReportsFrame(viewModel, account);;
+                        reportsFrame = new ReportsFrame(viewModel, account);;
                     }
                 });
             }
@@ -199,7 +196,7 @@ public class CostManagerView implements IView {
      */
     @Override
     public void showReports(LinkedList<Cost> costs) {
-        m_ReportsFrame.showReportsByDate(costs);
+        reportsFrame.showReportsByDate(costs);
     }
 
 
@@ -208,8 +205,8 @@ public class CostManagerView implements IView {
      */
     @Override
     public void closeSignUpFrame() {
-        m_RegisterFrame.toDispose();
-        m_LoginFrame = new LoginFrame(viewModel, this);
+        registerFrame.toDispose();
+        loginFrame = new LoginFrame(viewModel, this);
     }
 
     /**
@@ -217,8 +214,8 @@ public class CostManagerView implements IView {
      */
     @Override
     public void openSignUpFrame() {
-        m_LoginFrame.toDispose();
-        m_RegisterFrame = new RegisterFrame(viewModel, this);
+        loginFrame.toDispose();
+        registerFrame = new RegisterFrame(viewModel, this);
 
     }
 
@@ -234,7 +231,7 @@ public class CostManagerView implements IView {
                     @Override
                     public void run() {
                         // Logout from current account.
-                        LogOutFromAccount();
+                        logOutFromAccount();
                     }
                 });
             }

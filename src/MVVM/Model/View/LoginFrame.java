@@ -20,7 +20,6 @@ import java.awt.*;
  * (5) toDispose().
  *
  */
-
 public class LoginFrame {
 
     //Login frame members
@@ -106,11 +105,11 @@ public class LoginFrame {
      * If the input is ok we send to the view model request to log in to account.
      */
     public void setLoginButton() {
-        String username = textFieldUserName.getText();
+        String userName = textFieldUserName.getText();
         String password = textFieldPassword.getText();
-        Account account = new Account(username, password);
+        Account account = new Account(userName, password);
 
-        if (username.length() < 4)
+        if (userName.length() < 4)
         {
             JOptionPane.showMessageDialog(null,"The username must be 4 or more characters!", "*WARNING!*", JOptionPane.ERROR_MESSAGE);
         }

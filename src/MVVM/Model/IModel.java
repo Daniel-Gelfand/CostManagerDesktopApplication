@@ -18,7 +18,6 @@ import java.util.List;
  * (5) addNewCost(Cost cost),
  * (6) getReport(Account account, Date start, Date end).
  */
-
 public interface IModel {
 
 
@@ -28,7 +27,7 @@ public interface IModel {
      * @param account username
      * @throws CostManagerExceptions
      */
-    public void setupNewAccount(Account account) throws CostManagerExceptions;
+     void setupNewAccount(Account account) throws CostManagerExceptions;
 
 
 
@@ -38,7 +37,7 @@ public interface IModel {
      * @return true/false
      * @throws CostManagerExceptions
      */
-    public boolean loginToAccount(Account account) throws CostManagerExceptions;
+     boolean loginToAccount(Account account) throws CostManagerExceptions;
 
 
 
@@ -48,7 +47,7 @@ public interface IModel {
      * @param account username
      * @throws CostManagerExceptions
      */
-    public void addCategory(Category category, Account account) throws CostManagerExceptions;
+     void addCategory(Category category, Account account) throws CostManagerExceptions;
 
 
 
@@ -58,7 +57,7 @@ public interface IModel {
      * @return list of categories
      * @throws CostManagerExceptions
      */
-    public LinkedList<Category> getCategories(Account account) throws CostManagerExceptions;
+     LinkedList<Category> getCategories(Account account) throws CostManagerExceptions;
 
 
 
@@ -67,7 +66,7 @@ public interface IModel {
      * @param cost cost details
      * @throws CostManagerExceptions
      */
-    public void addNewCost(Cost cost) throws CostManagerExceptions;
+     void addNewCost(Cost cost) throws CostManagerExceptions;
 
 
 
@@ -79,5 +78,5 @@ public interface IModel {
      * @return list of costs
      * @throws CostManagerExceptions
      */
-    public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions;
+     LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions;
 }

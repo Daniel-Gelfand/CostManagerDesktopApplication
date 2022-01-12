@@ -3,7 +3,6 @@ package MVVM.Model.Model;
 import MVVM.Model.*;
 
 import java.sql.*;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,8 +20,6 @@ import java.util.List;
  *  (6) addNewCost(Cost cost),
  *  (7) getReport(Account account, Date start, Date end).
  */
-
-
 public class CostManagerDBModel implements IModel {
 
     // This member holds list of categories.
@@ -30,27 +27,8 @@ public class CostManagerDBModel implements IModel {
 
     // These members are account details to log in into MyPhpAdmin account.
     private String url = "jdbc:mysql://localhost:3306/costmanager";
-    private String username = "CostManager";
+    private String userName = "CostManager";
     private String password = "CostManager";
-
-
-    /**
-     * 'CostManagerDBModel' is a constructor.
-     * In this constructor we log in to MyPhpAdmin database
-     * @throws CostManagerExceptions
-     */
-    public CostManagerDBModel() throws CostManagerExceptions {
-
-
-        try (
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
-                Statement statement = costManagerConnection.createStatement();
-                ){
-        } catch (Exception e)
-        {
-            throw new CostManagerExceptions("Problem With Connect To DataBase {PHPAdmin}");
-        }
-    }
 
 
     /**
@@ -64,8 +42,7 @@ public class CostManagerDBModel implements IModel {
 
 
         try(
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
-                Statement statement = costManagerConnection.createStatement();
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 ) {
             //SQL queries that insert into 'accounts_db' database new username and password.
             String query = "insert into accounts_db" + "(usernames,passwords)"
@@ -73,7 +50,7 @@ public class CostManagerDBModel implements IModel {
 
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
             // Sets to column 1 username and to column 2 password.
-            preparedStmt.setString(1, account.getUsername());
+            preparedStmt.setString(1, account.getUserName());
             preparedStmt.setString(2, account.getPassword());
             preparedStmt.execute();
 
@@ -94,14 +71,15 @@ public class CostManagerDBModel implements IModel {
     public boolean loginToAccount(Account account) throws CostManagerExceptions {
         boolean isRegistered = false;
         try (
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 Statement statement = costManagerConnection.createStatement();
+                //PreparedStatement statement = (PreparedStatement) costManagerConnection.createStatement();
 
                 ){
             ResultSet resultSet;
-            if (account.getUsername() != null && account.getPassword() != null) {
+            if (account.getUserName() != null && account.getPassword() != null) {
                 //SQL queries that check if username and password are exists in database.
-                String sql = "Select * from accounts_db Where usernames='" + account.getUsername() + "' and passwords='" + account.getPassword() + "'";
+                String sql = "Select * from accounts_db Where usernames='" + account.getUserName() + "' and passwords='" + account.getPassword() + "'";
                 resultSet = statement.executeQuery(sql);
 
                 if (resultSet.next())
@@ -135,15 +113,14 @@ public class CostManagerDBModel implements IModel {
     public void addCategory(Category category, Account account) throws CostManagerExceptions {
 
         try(
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
-                Statement statement = costManagerConnection.createStatement();
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 ) {
             //SQL queries that insert to 'categories_dbtest' category to specific username.
             String query = "insert into categories_dbtest" + "(usernames, categories)" + "values (?,?)";
             PreparedStatement preparedStmt = costManagerConnection.prepareStatement(query);
             System.out.println("Inserted To DB!");
             // Sets to column 1 username and to column 2 category.
-            preparedStmt.setString(1, account.getUsername());
+            preparedStmt.setString(1, account.getUserName());
             preparedStmt.setString(2, category.getCategory());
             preparedStmt.execute();
         } catch (SQLException e) {
@@ -163,7 +140,7 @@ public class CostManagerDBModel implements IModel {
 
 
         try (
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 Statement statement = costManagerConnection.createStatement();
                 ){
 
@@ -171,7 +148,7 @@ public class CostManagerDBModel implements IModel {
                     LinkedList<Category> categories = new LinkedList<>();
                     System.out.println("Connected To DB!");
                     //SQL queries that give to specific username his all categories.
-                    String sql = "SELECT categories FROM categories_dbtest WHERE usernames='" + account.getUsername() + "'";
+                    String sql = "SELECT categories FROM categories_dbtest WHERE usernames='" + account.getUserName() + "'";
                     resultSet = statement.executeQuery(sql);
                     while (resultSet.next()) {
                          Category category = new Category(resultSet.getString("categories"));
@@ -198,8 +175,7 @@ public class CostManagerDBModel implements IModel {
     public void addNewCost(Cost cost) throws CostManagerExceptions{
 
         try (
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
-                Statement statement = costManagerConnection.createStatement();
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 ){
             //SQL queries that insert into 'main_db' who is the username,categories,descripiton,cost amount,currency and date.
             String query = "insert into main_db" + "(usernames,categories,description,cost,currency,date)"
@@ -230,14 +206,14 @@ public class CostManagerDBModel implements IModel {
     @Override
     public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
         try (
-                Connection costManagerConnection = DriverManager.getConnection(url, username, password);
+                Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 Statement statement = costManagerConnection.createStatement();
                 ){
 
             ResultSet resultSet;
             LinkedList<Cost> costs = new LinkedList<>();
             System.out.println("Connected To DB!");
-            String sql = "select * from main_db where usernames='" + account.getUsername() + "'and date >='" + start.toString() + "'and date <='" + end.toString() + "'";
+            String sql = "select * from main_db where usernames='" + account.getUserName() + "'and date >='" + start.toString() + "'and date <='" + end.toString() + "'";
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Cost cost = new Cost(resultSet.getString("usernames"), resultSet.getString("categories"), resultSet.getString("description"),

@@ -21,7 +21,6 @@ import java.awt.*;
  * (7) toDispose()
  *
  */
-
 public class MainMenuFrame {
 
     // the members that represent the form
@@ -60,7 +59,7 @@ public class MainMenuFrame {
         buttonAddNewCategory = new JButton("Add New Category");
 
         // set new label that show how is the account that connect
-        labelHelloUser = new JLabel("Hello " + account.getUsername() + "! Please chose your action");
+        labelHelloUser = new JLabel("Hello " + account.getUserName() + "! Please chose your action");
         labelHelloUser.setFont(new Font("Arial", Font.CENTER_BASELINE, 16));
         labelHelloUser.setForeground(new Color(0xAECEEE));
 

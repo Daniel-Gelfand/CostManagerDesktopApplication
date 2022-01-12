@@ -11,7 +11,6 @@ package MVVM.Model;
  *  (2) getCategory(),
  *  (3) setCategory(String category).
  */
-
 public class Category {
 
     //This member is name of category.
@@ -25,7 +24,7 @@ public class Category {
      * @param category category name
      */
     public Category(String category) {
-        this.category = category;
+        setCategory(category);
     }
 
 

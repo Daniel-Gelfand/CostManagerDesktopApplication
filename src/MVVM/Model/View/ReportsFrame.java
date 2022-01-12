@@ -24,10 +24,8 @@ import java.util.LinkedList;
  * (6) setMonthArray()
  * (7) setDayArray()
  * (8) setYearArray()
-
  *
  */
-
 public class ReportsFrame {
     private Account account;
     private IViewModel viewModel;
