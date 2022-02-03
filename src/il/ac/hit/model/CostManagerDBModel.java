@@ -31,16 +31,6 @@ public class CostManagerDBModel implements IModel {
     private String password = "CostManager";
 
 
-
-    private void addDefaultCategories()
-    {
-        Category[] defaultCategories = {new Category("Online Shopping"), new Category("Household"), new Category("Standing orders"), new Category("Recreation")};
-
-        for (int i = 0; i < defaultCategories.length; i++) {
-            categories.add(defaultCategories[i]);
-        }
-    }
-
     /**
      * 'setupNewAccount' is a methoad that insert into 'accounts_db' database new account details by using
      * sql queries.
@@ -84,12 +74,9 @@ public class CostManagerDBModel implements IModel {
         try (
                 Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 PreparedStatement statement = costManagerConnection.prepareStatement(sql);
-
+                ResultSet resultSet = statement.executeQuery(sql);
                 ){
-            ResultSet resultSet;
             if (account.getUserName() != null && account.getPassword() != null) {
-
-                resultSet = statement.executeQuery(sql);
 
                 if (resultSet.next())
                 {
@@ -152,11 +139,11 @@ public class CostManagerDBModel implements IModel {
         try (
                 Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 PreparedStatement statement = costManagerConnection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery(sql);
                 ){
-                    ResultSet resultSet;
                     categories = new LinkedList<>();
                     addDefaultCategories();
-                    resultSet = statement.executeQuery(sql);
+
                     while (resultSet.next()) {
                          Category category = new Category(resultSet.getString("categories"));
                          categories.add(category);
@@ -211,18 +198,17 @@ public class CostManagerDBModel implements IModel {
      * @throws CostManagerExceptions
      */
     @Override
-    public LinkedList<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
+    public List<Cost> getReport(Account account, Date start, Date end) throws CostManagerExceptions {
         //SQL queries that select from 'main_db' the cost of username by dates.
         String sql = "select * from main_db where usernames='" + account.getUserName() + "'and date >='" + start.toString() + "'and date <='" + end.toString() + "'";
 
         try (
                 Connection costManagerConnection = DriverManager.getConnection(url, userName, password);
                 PreparedStatement statement = costManagerConnection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery(sql);
                 ){
 
-            ResultSet resultSet;
-            LinkedList<Cost> costs = new LinkedList<>();
-            resultSet = statement.executeQuery(sql);
+            List<Cost> costs = new LinkedList<>();
             while (resultSet.next()) {
                 // create new cost by database results.
                 Cost cost = new Cost(resultSet.getString("usernames"), resultSet.getString("categories"), resultSet.getString("description"),
@@ -236,6 +222,18 @@ public class CostManagerDBModel implements IModel {
         catch (SQLException e) {
             // throws exception if something went wrong.
             throw new CostManagerExceptions("Problem with get report", e);
+        }
+    }
+
+    /**
+     * 'addDefaultCategories' is a methoad that adding into categories member default categories.
+     */
+    private void addDefaultCategories()
+    {
+        Category[] defaultCategories = {new Category("Online Shopping"), new Category("Household"), new Category("Standing orders"), new Category("Recreation")};
+
+        for (int i = 0; i < defaultCategories.length; i++) {
+            categories.add(defaultCategories[i]);
         }
     }
 }

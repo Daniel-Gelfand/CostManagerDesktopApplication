@@ -1,7 +1,7 @@
 package il.ac.hit.view;
 
-import il.ac.hit.Account;
-import il.ac.hit.Cost;
+import il.ac.hit.model.Account;
+import il.ac.hit.model.Cost;
 import il.ac.hit.IViewModel;
 
 

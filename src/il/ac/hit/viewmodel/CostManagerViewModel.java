@@ -1,6 +1,10 @@
 package il.ac.hit.viewmodel;
 
 import il.ac.hit.*;
+import il.ac.hit.model.Account;
+import il.ac.hit.model.Category;
+import il.ac.hit.model.Cost;
+import il.ac.hit.model.CostManagerExceptions;
 
 import javax.swing.*;
 import java.sql.Date;

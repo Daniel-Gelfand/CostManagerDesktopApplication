@@ -1,6 +1,6 @@
 package il.ac.hit;
 
-import il.ac.hit.model.CostManagerDBModel;
+import il.ac.hit.model.*;
 
 import java.sql.Date;
 import java.util.LinkedList;

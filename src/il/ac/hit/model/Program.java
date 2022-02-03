@@ -1,6 +1,8 @@
-package il.ac.hit;
+package il.ac.hit.model;
 
-import il.ac.hit.model.CostManagerDBModel;
+import il.ac.hit.IModel;
+import il.ac.hit.IView;
+import il.ac.hit.IViewModel;
 import il.ac.hit.view.CostManagerView;
 import il.ac.hit.viewmodel.CostManagerViewModel;
 

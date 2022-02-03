@@ -1,6 +1,9 @@
 package il.ac.hit.view;
 
 import il.ac.hit.*;
+import il.ac.hit.model.Account;
+import il.ac.hit.model.Category;
+import il.ac.hit.model.Cost;
 
 import javax.swing.*;
 import java.util.List;

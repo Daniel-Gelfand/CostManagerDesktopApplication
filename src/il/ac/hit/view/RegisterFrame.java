@@ -1,6 +1,6 @@
 package il.ac.hit.view;
 
-import il.ac.hit.Account;
+import il.ac.hit.model.Account;
 import il.ac.hit.IView;
 import il.ac.hit.IViewModel;
 

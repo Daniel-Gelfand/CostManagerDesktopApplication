@@ -1,5 +1,9 @@
 package il.ac.hit;
 
+import il.ac.hit.model.Account;
+import il.ac.hit.model.Category;
+import il.ac.hit.model.Cost;
+
 import java.sql.Date;
 
 
