@@ -11,17 +11,17 @@ CostManager desktop application that allows its users to track their expenses. T
 
 ## Preview
 
-<img src="/screenshots/register.jpg" alt = "CostManagerDesktopApplication" height="485">
+![alt text](https://www.linkpicture.com/q/register.jpg)
 
-<img src="/screenshots/login.jpg" alt = "CostManagerDesktopApplication" height="225">
+![alt text](https://www.linkpicture.com/q/login_3.jpg)
 
-<img src="/screenshots/mainmenu.jpg" alt = "CostManagerDesktopApplication" height="350">
+![alt text](https://www.linkpicture.com/q/mainmenu_1.jpg)
 
-<img src="/screenshots/addnewcost.jpg" alt = "CostManagerDesktopApplication" height="250">
+![alt text](https://www.linkpicture.com/q/addnewcost.jpg)
 
-<img src="/screenshots/AddNewCategory.jpg" alt = "CostManagerDesktopApplication" height="250">
+![alt text](https://www.linkpicture.com/q/AddNewCategory.jpg)
 
-<img src="/screenshots/Reports.jpg" alt = "CostManagerDesktopApplication" height="400">
+![alt text](https://www.linkpicture.com/q/Reports.jpg)
 
 
 
