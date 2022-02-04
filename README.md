@@ -1,6 +1,9 @@
 
 ## Preview
 
+![alt text](http://url/to/img.png)
+
+
 <img src="/screenshots/register.jpg" alt = "CostManagerDesktopApplication" height="485">
 
 <img src="/screenshots/login.jpg" alt = "CostManagerDesktopApplication" height="225">
@@ -19,4 +22,10 @@
 
 - [@Daniel-Gelfand](https://github.com/Daniel-Gelfand)
 - [@matanbare](https://github.com/matanbare)
+
+## Clone 
+
+```bash
+  git clone https://github.com/Daniel-Gelfand/CostManagerDesktopApplication.git
+```
 
