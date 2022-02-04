@@ -40,3 +40,4 @@ CostManager desktop application that allows its users to track their expenses. T
   git clone https://github.com/Daniel-Gelfand/CostManagerDesktopApplication.git
 ```
 
+## 2021
