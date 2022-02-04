@@ -5,10 +5,18 @@
 
 <img src="/screenshots/login.jpg" alt = "CostManagerDesktopApplication" height="225">
 
-<img src="/screenshots/mainmenu.jpg" alt = "CostManagerDesktopApplication" height="295">
+<img src="/screenshots/mainmenu.jpg" alt = "CostManagerDesktopApplication" height="350">
 
-<img src="/screenshots/addnewcost.jpg" alt = "CostManagerDesktopApplication" height="662">
+<img src="/screenshots/addnewcost.jpg" alt = "CostManagerDesktopApplication" height="250">
 
-<img src="/screenshots/AddNewCategory.jpg" alt = "CostManagerDesktopApplication" height="274">
+<img src="/screenshots/AddNewCategory.jpg" alt = "CostManagerDesktopApplication" height="250">
 
-<img src="/screenshots/Reports.jpg" alt = "CostManagerDesktopApplication" height="225">
+<img src="/screenshots/Reports.jpg" alt = "CostManagerDesktopApplication" height="400">
+
+
+
+## Authors
+
+- [@Daniel-Gelfand](https://github.com/Daniel-Gelfand)
+- [@matanbare](https://github.com/matanbare)
+
