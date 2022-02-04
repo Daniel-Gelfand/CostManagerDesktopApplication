@@ -1,8 +1,15 @@
 
+# Project Title
+
+CostManager desktop application that allows its users to track their expenses. The application should allow its users the following operations:
+
+1. Adding a new cost while specifying the category to which that cost will be added, the sum, the currency, and a small text describing that cost.
+2. Adding new categories to a small list of categories that should be already defined.
+3. Getting a detailed report that lists all costs in a specific period of time the user selects.
+
+
+
 ## Preview
-
-![alt text](http://url/to/img.png)
-
 
 <img src="/screenshots/register.jpg" alt = "CostManagerDesktopApplication" height="485">
 
