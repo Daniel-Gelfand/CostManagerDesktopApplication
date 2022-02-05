@@ -13,12 +13,12 @@ CostManager desktop application that allows its users to track their expenses. T
 
 ## The Architecture - MVVM design pattern
 
-- The methods we define in IViewModel should return void, and their signature cannot include a throws clause. They should be asynchronous methods.
-- The methods we define in IModel should include throws clause in their signature. That throws clause should use the specific exception type that was defined for our project. -   They shouldn’t include throws for other exception types. (code: MVVM2)
+- The methods we definde in IViewModel returns void, and their signature cannot include a throws clause. They should be asynchronous methods.
+- The methods we defined in IModel include throws clause in their signature. That throws clause use the specific exception type that was defined for our project. - 
 - The implementation of the methods that were defined in IViewModel include the use of try and catch when calling methods on the IModel object, and in case of exception the       catch block includes a call for showing the proper message to the user.
 - Whenever the implementation of the methods that were defined in IViewModel include code that interacts with the IView, that interaction should be performed using the           
   SwingUtilities.invokeLater() method.
-- The View object should hold the reference for the ViewModel object. The ViewModel object should hold the references for the View object and the Model object.
+- The View object holds the reference for the ViewModel object. The ViewModel object holds the references for the View object and the Model object.
 - The UI developed using a LayoutManager object that controls the size and the location of every component. The only exception for this guideline can be small dialog/frame   
   windows (e.g. login small window).
 
