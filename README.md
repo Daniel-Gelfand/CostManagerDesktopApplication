@@ -21,6 +21,8 @@ CostManager desktop application that allows its users to track their expenses. T
 - The View object holds the reference for the ViewModel object. The ViewModel object holds the references for the View object and the Model object.
 - The UI developed using a LayoutManager object that controls the size and the location of every component. The only exception for this guideline can be small dialog/frame   
   windows (e.g. login small window).
+- Developing The Unit Tests for The Model.
+- Developing the model that uses the database. This model will be used on the client-side. The database managed by MySQL.
 
 
 
